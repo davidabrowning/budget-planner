@@ -20,5 +20,13 @@ namespace BudgetPlanner.Wpf
         {
             InitializeComponent();
         }
+
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ToggleButton.Content.ToString().Contains("ON"))
+                ToggleButton.Content = "Toggle: OFF";
+            else
+                ToggleButton.Content = "Toggle: ON";
+        }
     }
 }
