@@ -22,6 +22,9 @@
                     <Button x:Name="AddTransactionButton"
                             Content="Add transaction"
                             Click="AddTransactionButton_Click" />
+                    <Button x:Name="DeleteTransactionButton"
+                            Content="Delete transaction"
+                            Click="DeleteTransactionButton_Click" />
                 </StackPanel>
             </Grid>
         </StackPanel>

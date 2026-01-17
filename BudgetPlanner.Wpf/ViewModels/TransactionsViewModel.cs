@@ -13,6 +13,14 @@ namespace BudgetPlanner.Wpf.ViewModels
             set { transactions = value; }
         }
 
+        private TransactionDto? selectedTransaction;
+        public TransactionDto? SelectedTransaction
+        {
+            get { return selectedTransaction; }
+            set { selectedTransaction = value; }
+        }
+
+
         public TransactionsViewModel()
         {
             transactions.Add(new TransactionDto() { Amount = 30000, Category = "Lön", Frequency = Frequency.Monthly, Comment = "Monthly salary" });

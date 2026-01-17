@@ -47,5 +47,9 @@ namespace BudgetPlanner.Wpf
                 Console.WriteLine(ex.Message);
             }
         }
+
+        private void DeleteTransactionButton_Click(Object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
