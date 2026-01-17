@@ -20,7 +20,6 @@ namespace BudgetPlanner.Wpf.ViewModels
             set { selectedTransaction = value; }
         }
 
-
         public TransactionsViewModel()
         {
             transactions.Add(new TransactionDto() { Amount = 30000, Category = "Lön", Frequency = Frequency.Monthly, Comment = "Monthly salary" });
