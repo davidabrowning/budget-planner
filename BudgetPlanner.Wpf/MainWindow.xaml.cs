@@ -50,6 +50,8 @@ namespace BudgetPlanner.Wpf
 
         private void DeleteTransactionButton_Click(Object sender, RoutedEventArgs e)
         {
+            _viewModel.Transactions.Remove(_viewModel.SelectedTransaction);
+            _viewModel.SelectedTransaction = null;
         }
     }
 }
