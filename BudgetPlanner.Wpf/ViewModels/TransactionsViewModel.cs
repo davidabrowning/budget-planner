@@ -33,6 +33,19 @@ namespace BudgetPlanner.Wpf.ViewModels
             transactions.Add(new TransactionDto() { Amount = -5000, Category = "Hyra", Frequency = Frequency.Monthly, Comment = "Monthly rent" });
         }
 
+        public void AddTransaction(TransactionDto transaction)
+        {
+            Transactions.Add(transaction);
+        }
+
+        public void DeleteSelectedTransaction()
+        {
+            if (SelectedTransaction is null)
+                return;
+            Transactions.Remove(SelectedTransaction);
+            SelectedTransaction = null;
+        }
+
         public async Task LoadAsync()
         {
             if (transactions.Any())

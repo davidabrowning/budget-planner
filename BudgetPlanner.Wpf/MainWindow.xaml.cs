@@ -39,7 +39,8 @@ namespace BudgetPlanner.Wpf
             try
             {
                 int amountInt = Convert.ToInt32(amountString);
-                _viewModel.Transactions.Add(new TransactionDto() { Amount = amountInt });
+                TransactionDto newTransaction = new TransactionDto() { Amount = amountInt };
+                _viewModel.AddTransaction(newTransaction);
                 AmountInput.Text = string.Empty;
             }
             catch (Exception ex)
@@ -50,8 +51,7 @@ namespace BudgetPlanner.Wpf
 
         private void DeleteTransactionButton_Click(Object sender, RoutedEventArgs e)
         {
-            _viewModel.Transactions.Remove(_viewModel.SelectedTransaction);
-            _viewModel.SelectedTransaction = null;
+            _viewModel.DeleteSelectedTransaction();
         }
     }
 }
