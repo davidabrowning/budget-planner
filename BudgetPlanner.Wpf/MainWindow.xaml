@@ -8,11 +8,22 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Button Content="Budget Planner" />
-            <Button x:Name="ToggleButton"
-                    Content="Toggle: ON"
-                    Click="ToggleButton_Click" />
-            <ListView ItemsSource="{Binding Path=Transactions}" DisplayMemberPath="Amount"></ListView>
+            <TextBlock Text="Budget Planner" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <ListView ItemsSource="{Binding Path=Transactions}" DisplayMemberPath="Amount"></ListView>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox x:Name="AmountInput" Text="" />
+                    <Button x:Name="AddTransactionButton"
+                            Content="Add transaction"
+                            Click="AddTransactionButton_Click" />
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
