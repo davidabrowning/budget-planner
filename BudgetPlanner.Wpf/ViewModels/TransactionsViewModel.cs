@@ -17,7 +17,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public TransactionDto? SelectedTransaction
         {
             get { return selectedTransaction; }
-            set { selectedTransaction = value; }
+            set { selectedTransaction = value;  }
         }
 
         public TransactionsViewModel()

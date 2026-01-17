@@ -15,7 +15,9 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <ListView ItemsSource="{Binding Path=Transactions}" DisplayMemberPath="Amount"></ListView>
+                    <ListView ItemsSource="{Binding Path=Transactions}" 
+                              SelectedItem="{Binding Path=SelectedTransaction, Mode=TwoWay}"
+                              DisplayMemberPath="Amount" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <TextBox x:Name="AmountInput" Text="" />
