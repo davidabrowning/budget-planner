@@ -20,7 +20,7 @@
                               DisplayMemberPath="Amount" />
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="AmountInput" Text="" />
+                    <TextBox x:Name="AmountInput" Text="{Binding Path=SelectedTransaction.Amount}" />
                     <Button x:Name="AddTransactionButton"
                             Content="Add transaction"
                             Click="AddTransactionButton_Click" />
