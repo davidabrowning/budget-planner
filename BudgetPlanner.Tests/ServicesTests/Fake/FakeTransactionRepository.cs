@@ -1,9 +1,14 @@
 ﻿using BudgetPlanner.Core.Interfaces;
 using BudgetPlanner.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BudgetPlanner.Data.Repositories
+namespace BudgetPlanner.Tests.ServicesTests.Fake
 {
-    public class TransactionRepository : ITransactionRepository
+    public class FakeTransactionRepository : ITransactionRepository
     {
         private List<Transaction> _transactions = new();
 

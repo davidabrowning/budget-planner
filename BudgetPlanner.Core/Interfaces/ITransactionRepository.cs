@@ -7,7 +7,7 @@ namespace BudgetPlanner.Core.Interfaces
         IEnumerable<Transaction> GetAll();
         Transaction? GetById(int id);
         Transaction Add(Transaction transaction);
-        bool Update(Transaction transaction);
+        Transaction? Update(Transaction transaction);
         bool Delete(int id);
     }
 }

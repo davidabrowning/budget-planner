@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BudgetPlanner.Core\BudgetPlanner.Core.csproj" />
     <ProjectReference Include="..\BudgetPlanner.Data\BudgetPlanner.Data.csproj" />
+    <ProjectReference Include="..\BudgetPlanner.Services\BudgetPlanner.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
