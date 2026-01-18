@@ -23,13 +23,15 @@
                                     <TextBlock Text="{Binding Path=Category}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Amount}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
+                                    <TextBlock Text="{Binding Path=Comment}" Margin="5" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="AmountInput" Text="{Binding Path=SelectedTransaction.Amount}" />
+                    <TextBox x:Name="InputAmount" Text="{Binding Path=SelectedTransaction.Amount}" />
+                    <TextBox x:Name="InputComment" Text="{Binding Path=SelectedTransaction.Comment}" />
                     <Button x:Name="AddTransactionButton"
                             Content="Add transaction"
                             Click="AddTransactionButton_Click" />

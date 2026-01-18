@@ -40,13 +40,18 @@ namespace BudgetPlanner.Wpf
 
         private void AddTransactionButton_Click(object sender, RoutedEventArgs e)
         {
-            string amountString = AmountInput.Text;
+            string amountString = InputAmount.Text;
+            string commentString = InputComment.Text;
             try
             {
                 int amountInt = Convert.ToInt32(amountString);
-                TransactionDto newTransaction = new TransactionDto() { Amount = amountInt };
+                TransactionDto newTransaction = new TransactionDto()
+                {
+                    Amount = amountInt,
+                    Comment = commentString
+                };
                 _viewModel.AddTransaction(newTransaction);
-                AmountInput.Text = string.Empty;
+                InputAmount.Text = string.Empty;
             }
             catch (Exception ex)
             {
