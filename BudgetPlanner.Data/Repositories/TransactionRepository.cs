@@ -6,9 +6,11 @@ namespace BudgetPlanner.Data.Repositories
     public class TransactionRepository : ITransactionRepository
     {
         private List<Transaction> _transactions = new();
+        private static int nextId = 0;
 
         public Transaction Add(Transaction transaction)
         {
+            transaction.Id = nextId++;
             _transactions.Add(transaction);
             return transaction;
         }
