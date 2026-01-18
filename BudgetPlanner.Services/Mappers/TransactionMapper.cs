@@ -11,6 +11,8 @@ namespace BudgetPlanner.Services.Mappers
             {
                 Id = dto.Id,
                 Amount = dto.Amount,
+                Month = dto.Month,
+                Year = dto.Year,
                 Frequency = dto.Frequency,
                 Category = dto.Category,
                 Comment = dto.Comment
@@ -24,9 +26,11 @@ namespace BudgetPlanner.Services.Mappers
             {
                 Id = model.Id,
                 Amount = model.Amount,
+                Month = model.Month,
+                Year = model.Year,
                 Frequency = model.Frequency,
                 Category = model.Category,
-                Comment = model.Comment
+                Comment = model.Comment ?? string.Empty
             };
             return dto;
         }

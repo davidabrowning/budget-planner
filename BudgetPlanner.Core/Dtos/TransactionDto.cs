@@ -6,6 +6,8 @@ namespace BudgetPlanner.Core.Dtos
     {
         public int Id { get; set; }
         public int Amount { get; set; } = 0;
+        public int Month { get; set; } = DateTime.Now.Month;
+        public int Year { get; set; } = DateTime.Now.Year;
         public Frequency Frequency { get; set; } = Frequency.OneTime;
         public Category Category { get; set; } = Category.Unknown;
         public string Comment { get; set; } = string.Empty;
