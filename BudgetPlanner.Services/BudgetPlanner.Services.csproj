@@ -1,17 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BudgetPlanner.Core\BudgetPlanner.Core.csproj" />
     <ProjectReference Include="..\BudgetPlanner.Data\BudgetPlanner.Data.csproj" />
-    <ProjectReference Include="..\BudgetPlanner.Services\BudgetPlanner.Services.csproj" />
   </ItemGroup>
 
 </Project>

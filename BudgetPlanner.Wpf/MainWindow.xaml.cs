@@ -1,4 +1,7 @@
 ﻿using BudgetPlanner.Core.Dtos;
+using BudgetPlanner.Core.Interfaces;
+using BudgetPlanner.Data.Repositories;
+using BudgetPlanner.Services;
 using BudgetPlanner.Wpf.ViewModels;
 using System.Text;
 using System.Windows;
@@ -23,7 +26,9 @@ namespace BudgetPlanner.Wpf
         public MainWindow()
         {
             InitializeComponent();
-            _viewModel = new();
+            TransactionRepository transactionRepository = new();
+            TransactionService transactionService = new(transactionRepository);
+            _viewModel = new(transactionService);
             DataContext = _viewModel;
             Loaded += TransactionsView_Loaded;
         }
