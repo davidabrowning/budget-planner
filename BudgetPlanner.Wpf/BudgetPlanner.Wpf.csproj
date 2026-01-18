@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BudgetPlanner.Core\BudgetPlanner.Core.csproj" />
+  </ItemGroup>
+
 </Project>

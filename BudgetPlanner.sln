@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36804.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetPlanner.Wpf", "BudgetPlanner.Wpf\BudgetPlanner.Wpf.csproj", "{EF97E07C-862F-4C1A-9ECB-F8E68F5C773A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetPlanner.Core", "BudgetPlanner.Core\BudgetPlanner.Core.csproj", "{4AECF299-F898-4101-B9D3-940E158CC94E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EF97E07C-862F-4C1A-9ECB-F8E68F5C773A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF97E07C-862F-4C1A-9ECB-F8E68F5C773A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF97E07C-862F-4C1A-9ECB-F8E68F5C773A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AECF299-F898-4101-B9D3-940E158CC94E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AECF299-F898-4101-B9D3-940E158CC94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AECF299-F898-4101-B9D3-940E158CC94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AECF299-F898-4101-B9D3-940E158CC94E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
