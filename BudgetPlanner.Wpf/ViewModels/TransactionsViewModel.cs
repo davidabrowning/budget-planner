@@ -30,6 +30,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public IEnumerable<Category> Categories { get { return CategoryLookup.All; } }
         public IEnumerable<Frequency> Frequencies { get { return FrequencyLookup.All; } }
+        public IEnumerable<Month> Months { get { return MonthLookup.All; } }
 
         public TransactionsViewModel(ITransactionService transactionService)
         {

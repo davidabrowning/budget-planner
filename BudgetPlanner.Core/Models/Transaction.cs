@@ -6,7 +6,7 @@ namespace BudgetPlanner.Core.Models
     {
         public int Id { get; set; }
         public int Amount { get; set; }
-        public int Month { get; set; }
+        public Month Month { get; set; }
         public int Year { get; set; }
         public Frequency Frequency { get; set; }
         public Category Category { get; set; }

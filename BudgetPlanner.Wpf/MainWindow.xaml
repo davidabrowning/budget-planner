@@ -20,6 +20,8 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Year}" Margin="5" />
+                                    <TextBlock Text="{Binding Path=Month}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Category}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Amount}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
@@ -34,6 +36,11 @@
                              Text="{Binding Path=SelectedTransaction.Amount}" />
                     <TextBox x:Name="InputComment" 
                              Text="{Binding Path=SelectedTransaction.Comment}" />
+                    <TextBox x:Name="InputYear" 
+                             Text="{Binding Path=SelectedTransaction.Year}" />
+                    <ListBox x:Name="InputMonth" 
+                             ItemsSource="{Binding Path=Months}" 
+                             SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}" />
                     <ListBox x:Name="InputCategory" 
                              ItemsSource="{Binding Path=Categories}" 
                              SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
