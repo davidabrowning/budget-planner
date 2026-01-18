@@ -1,4 +1,5 @@
-﻿using BudgetPlanner.Wpf.ViewModels;
+﻿using BudgetPlanner.Core.Dtos;
+using BudgetPlanner.Wpf.ViewModels;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,17 +28,30 @@ namespace BudgetPlanner.Wpf
             Loaded += TransactionsView_Loaded;
         }
 
-        private void ToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ToggleButton.Content.ToString().Contains("ON"))
-                ToggleButton.Content = "Toggle: OFF";
-            else
-                ToggleButton.Content = "Toggle: ON";
-        }
-
         private async void TransactionsView_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.LoadAsync();
+        }
+
+        private void AddTransactionButton_Click(object sender, RoutedEventArgs e)
+        {
+            string amountString = AmountInput.Text;
+            try
+            {
+                int amountInt = Convert.ToInt32(amountString);
+                TransactionDto newTransaction = new TransactionDto() { Amount = amountInt };
+                _viewModel.AddTransaction(newTransaction);
+                AmountInput.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void DeleteTransactionButton_Click(Object sender, RoutedEventArgs e)
+        {
+            _viewModel.DeleteSelectedTransaction();
         }
     }
 }
