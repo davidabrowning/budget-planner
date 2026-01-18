@@ -4,7 +4,7 @@
     {
         Unknown = 0,
         Food = 1,
-        Home = 2,
+        Housing = 2,
         Transportation = 3,
         Leisure = 4,
         Children = 5,
