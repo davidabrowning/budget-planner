@@ -30,8 +30,16 @@
                     </ListView>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="InputAmount" Text="{Binding Path=SelectedTransaction.Amount}" />
-                    <TextBox x:Name="InputComment" Text="{Binding Path=SelectedTransaction.Comment}" />
+                    <TextBox x:Name="InputAmount" 
+                             Text="{Binding Path=SelectedTransaction.Amount}" />
+                    <TextBox x:Name="InputComment" 
+                             Text="{Binding Path=SelectedTransaction.Comment}" />
+                    <ListBox x:Name="InputCategory" 
+                             ItemsSource="{Binding Path=Categories}" 
+                             SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
+                    <ListBox x:Name="InputFrequency" 
+                             ItemsSource="{Binding Path=Frequencies}" 
+                             SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
                     <Button x:Name="AddTransactionButton"
                             Content="Add transaction"
                             Click="AddTransactionButton_Click" />
