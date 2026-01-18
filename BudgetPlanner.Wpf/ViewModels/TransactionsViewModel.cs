@@ -1,5 +1,6 @@
 ﻿using BudgetPlanner.Core.Dtos;
 using BudgetPlanner.Core.Enums;
+using BudgetPlanner.Core.Interfaces;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -9,11 +10,11 @@ namespace BudgetPlanner.Wpf.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private ObservableCollection<TransactionDto> transactions = new();
-        public ObservableCollection<TransactionDto> Transactions
+        private readonly ITransactionService _transactionService;
+
+        public IEnumerable<TransactionDto> Transactions
         {
-            get { return transactions; }
-            set { transactions = value; }
+            get { return _transactionService.GetAll(); }
         }
 
         private TransactionDto? selectedTransaction;
@@ -27,28 +28,31 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
-        public TransactionsViewModel()
+        public TransactionsViewModel(ITransactionService transactionService)
         {
-            transactions.Add(new TransactionDto() { Amount = 30000, Category = "Lön", Frequency = Frequency.Monthly, Comment = "Monthly salary" });
-            transactions.Add(new TransactionDto() { Amount = -5000, Category = "Hyra", Frequency = Frequency.Monthly, Comment = "Monthly rent" });
+            _transactionService = transactionService;
+            _transactionService.Add(new TransactionDto() { Amount = 30000, Category = "Lön", Frequency = Frequency.Monthly, Comment = "Monthly salary" });
+            _transactionService.Add(new TransactionDto() { Amount = -5000, Category = "Hyra", Frequency = Frequency.Monthly, Comment = "Monthly rent" });
         }
 
         public void AddTransaction(TransactionDto transaction)
         {
-            Transactions.Add(transaction);
+            _transactionService.Add(transaction);
+            RaisePropertyChanged(nameof(Transactions));
         }
 
         public void DeleteSelectedTransaction()
         {
             if (SelectedTransaction is null)
                 return;
-            Transactions.Remove(SelectedTransaction);
+            _transactionService.Delete(SelectedTransaction);
+            RaisePropertyChanged(nameof(Transactions));
             SelectedTransaction = null;
         }
 
         public async Task LoadAsync()
         {
-            if (transactions.Any())
+            if (_transactionService.GetAll().Any())
             {
                 return;
             }
