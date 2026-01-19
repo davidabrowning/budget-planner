@@ -65,17 +65,21 @@
 
                                 <Button x:Name="AddTransactionButton"
                                         Content="Add transaction"
-                                        Click="AddTransactionButton_Click" />
+                                        Click="AddTransactionButton_Click"
+                                        Margin="5"/>
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="EditTab" Header="Edit">
                             <StackPanel>
+                                <Label Content="Amount:"/>
                                 <TextBox x:Name="EditAmount" 
                                         Text="{Binding Path=SelectedTransaction.Amount}" />
-                                <TextBox x:Name="EditComment" 
-                                        Text="{Binding Path=SelectedTransaction.Comment}" />
+
+                                <Label Content="Year:"/>
                                 <TextBox x:Name="EditYear" 
                                         Text="{Binding Path=SelectedTransaction.Year}" />
+
+                                <Label Content="Month:"/>
                                 <ListBox x:Name="EditMonth"
                                         ItemsSource="{Binding Path=Months}" 
                                         SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}">
@@ -85,16 +89,30 @@
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                 </ListBox>
+
+                                <Label Content="Category:"/>
                                 <ListBox x:Name="EditCategory" 
                                          ItemsSource="{Binding Path=Categories}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
+
+                                <Label Content="Frequency:"/>
                                 <ListBox x:Name="EditFrequency" 
                                          ItemsSource="{Binding Path=Frequencies}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
 
+                                <Label Content="Comment:"/>
+                                <TextBox x:Name="EditComment" 
+                                        Text="{Binding Path=SelectedTransaction.Comment}" />
+
+                                <Button x:Name="UpdateTransactionButton"
+                                        Content="Update transaction"
+                                        Click="UpdateTransactionButton_Click"
+                                        Margin="5"/>
+
                                 <Button x:Name="DeleteTransactionButton"
                                         Content="Delete transaction"
-                                        Click="DeleteTransactionButton_Click" />
+                                        Click="DeleteTransactionButton_Click"
+                                        Margin="5"/>
                             </StackPanel>
                         </TabItem>
                     </TabControl>

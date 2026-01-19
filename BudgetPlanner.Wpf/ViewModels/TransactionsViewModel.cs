@@ -45,6 +45,14 @@ namespace BudgetPlanner.Wpf.ViewModels
             RaisePropertyChanged(nameof(Transactions));
         }
 
+        public void UpdateSelectedTransaction()
+        {
+            if (SelectedTransaction == null)
+                return;
+            _transactionService.Update(SelectedTransaction);
+            RaisePropertyChanged(nameof(Transactions));
+        }
+
         public void DeleteSelectedTransaction()
         {
             if (SelectedTransaction is null)
