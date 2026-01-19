@@ -59,6 +59,17 @@ namespace BudgetPlanner.Wpf
             }
         }
 
+        private void EditTransactionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button? button = sender as Button;
+            TransactionDto? transaction = button?.DataContext as TransactionDto;
+            if (transaction != null)
+            {
+                _viewModel.SelectedTransaction = transaction;
+                AddEditTransactionTabGroup.SelectedItem = EditTab;
+            }
+        }
+
         private void DeleteTransactionButton_Click(Object sender, RoutedEventArgs e)
         {
             _viewModel.DeleteSelectedTransaction();

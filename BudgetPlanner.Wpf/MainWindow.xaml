@@ -15,8 +15,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <ListView ItemsSource="{Binding Path=Transactions}" 
-                              SelectedItem="{Binding Path=SelectedTransaction, Mode=TwoWay}">
+                    <ListView ItemsSource="{Binding Path=Transactions}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -26,14 +25,17 @@
                                     <TextBlock Text="{Binding Path=Amount}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Comment}" Margin="5" />
+                                    <Button x:Name="EditTransactionButton" 
+                                            Content="Edit" 
+                                            Click="EditTransactionButton_Click" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TabControl>
-                        <TabItem Header="Add new">
+                    <TabControl x:Name="AddEditTransactionTabGroup">
+                        <TabItem x:Name="AddTab" Header="Add new">
                             <StackPanel>
                                 <Label Content="Amount:" />
                                 <TextBox x:Name="NewAmount" Text="" />
@@ -66,7 +68,7 @@
                                         Click="AddTransactionButton_Click" />
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="Edit">
+                        <TabItem x:Name="EditTab" Header="Edit">
                             <StackPanel>
                                 <TextBox x:Name="EditAmount" 
                                         Text="{Binding Path=SelectedTransaction.Amount}" />
