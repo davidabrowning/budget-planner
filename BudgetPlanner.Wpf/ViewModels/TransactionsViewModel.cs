@@ -28,16 +28,28 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
+        public IEnumerable<Category> Categories { get { return CategoryLookup.All; } }
+        public IEnumerable<Frequency> Frequencies { get { return FrequencyLookup.All; } }
+        public IEnumerable<Month> Months { get { return MonthLookup.All; } }
+
         public TransactionsViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
-            _transactionService.Add(new TransactionDto() { Amount = 30000, Category = "Lön", Frequency = Frequency.Monthly, Comment = "Monthly salary" });
-            _transactionService.Add(new TransactionDto() { Amount = -5000, Category = "Hyra", Frequency = Frequency.Monthly, Comment = "Monthly rent" });
+            _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
+            _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
         }
 
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
+            RaisePropertyChanged(nameof(Transactions));
+        }
+
+        public void UpdateSelectedTransaction()
+        {
+            if (SelectedTransaction == null)
+                return;
+            _transactionService.Update(SelectedTransaction);
             RaisePropertyChanged(nameof(Transactions));
         }
 
