@@ -1,4 +1,5 @@
 ﻿using BudgetPlanner.Core.Dtos;
+using BudgetPlanner.Core.Enums;
 using BudgetPlanner.Core.Interfaces;
 using BudgetPlanner.Data.Repositories;
 using BudgetPlanner.Services;
@@ -42,13 +43,22 @@ namespace BudgetPlanner.Wpf
         {
             string amountString = NewAmount.Text;
             string commentString = NewComment.Text;
+            Category category = (Category)NewCategory.SelectedItem;
+            Frequency frequency = (Frequency)NewFrequency.SelectedItem;
+            string yearString = NewYear.Text;
+            Month month = (Month)NewMonth.SelectedItem;
             try
             {
                 int amountInt = Convert.ToInt32(amountString);
+                int yearInt = Convert.ToInt32(yearString);
                 TransactionDto newTransaction = new TransactionDto()
                 {
                     Amount = amountInt,
-                    Comment = commentString
+                    Comment = commentString,
+                    Category = category,
+                    Frequency = frequency,
+                    Year = yearInt,
+                    Month = month
                 };
                 _viewModel.AddTransaction(newTransaction);
                 NewAmount.Text = string.Empty;
