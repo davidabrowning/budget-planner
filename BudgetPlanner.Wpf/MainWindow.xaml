@@ -44,7 +44,9 @@
                                 <TextBox x:Name="NewYear" Text="" />
 
                                 <Label Content="Month:" />
-                                <ListBox x:Name="NewMonth" ItemsSource="{Binding Path=AllMonths}">
+                                <ListBox x:Name="NewMonth" 
+                                         ItemsSource="{Binding Path=AllMonths}" 
+                                         SelectedItem="{Binding Path=DefaultMonth, Mode=OneWay}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal" />
