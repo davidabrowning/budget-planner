@@ -44,7 +44,7 @@
                                 <TextBox x:Name="NewYear" Text="" />
 
                                 <Label Content="Month:" />
-                                <ListBox x:Name="NewMonth" ItemsSource="{Binding Path=Months}">
+                                <ListBox x:Name="NewMonth" ItemsSource="{Binding Path=AllMonths}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal" />
@@ -54,11 +54,11 @@
 
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="NewCategory" 
-                                         ItemsSource="{Binding Path=Categories}" />
+                                         ItemsSource="{Binding Path=AllCategories}" />
 
                                 <Label Content="Frequency:" />
                                 <ListBox x:Name="NewFrequency" 
-                                         ItemsSource="{Binding Path=Frequencies}"  />
+                                         ItemsSource="{Binding Path=AllFrequencies}"  />
 
                                 <Label Content="Comment:" />
                                 <TextBox x:Name="NewComment" Text="" />
