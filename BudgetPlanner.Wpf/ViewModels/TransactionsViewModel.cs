@@ -6,10 +6,8 @@ using System.ComponentModel;
 
 namespace BudgetPlanner.Wpf.ViewModels
 {
-    public class TransactionsViewModel : INotifyPropertyChanged
+    public class TransactionsViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private readonly ITransactionService _transactionService;
 
         public IEnumerable<TransactionDto> Transactions
@@ -70,11 +68,6 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
 
             // Otherwise, load transactions from database
-        }
-
-        public void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
