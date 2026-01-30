@@ -75,7 +75,7 @@
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="EditTab" Header="Edit">
-                            <StackPanel>
+                            <StackPanel DataContext="{Binding EditTransactionViewModel}">
                                 <Label Content="Amount:"/>
                                 <TextBox x:Name="EditAmount" 
                                         Text="{Binding Path=SelectedTransaction.Amount}" />

@@ -76,6 +76,7 @@ namespace BudgetPlanner.Wpf
             if (transaction == null)
                 return;
             _viewModel.SelectedTransaction = transaction;
+            _viewModel.EditTransactionViewModel.SelectedTransaction = transaction;
             AddEditTransactionTabGroup.SelectedItem = EditTab;
         }
 

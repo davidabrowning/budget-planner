@@ -8,6 +8,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public EditTransactionViewModel EditTransactionViewModel { get; } = new();
         private readonly ITransactionService _transactionService;
 
         private ObservableCollection<TransactionDto> transactions = new();
@@ -32,13 +33,13 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
-        public IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
-        public Category DefaultCategory { get { return Category.Unknown; } }
-        public IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
-        public Frequency DefaultFrequency { get { return Frequency.OneTime; } }
-        public IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
-        public Month DefaultMonth { get { return (Month)DateTime.Now.Month; } }
-        public int DefaultYear { get { return DateTime.Now.Year; } }
+        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
+        public static Category DefaultCategory { get { return Category.Unknown; } }
+        public static IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
+        public static Frequency DefaultFrequency { get { return Frequency.OneTime; } }
+        public static IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
+        public static Month DefaultMonth { get { return (Month)DateTime.Now.Month; } }
+        public static int DefaultYear { get { return DateTime.Now.Year; } }
 
         public MainViewModel(ITransactionService transactionService)
         {
