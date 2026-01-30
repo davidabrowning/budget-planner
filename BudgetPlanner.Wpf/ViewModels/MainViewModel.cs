@@ -8,35 +8,15 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public TransactionsListViewModel TransactionsListViewModel { get; }
         public AddTransactionViewModel AddTransactionViewModel { get; }
         public EditTransactionViewModel EditTransactionViewModel { get; }
         private readonly ITransactionService _transactionService;
 
-        private ObservableCollection<TransactionDto> transactions = new();
-        public ObservableCollection<TransactionDto> Transactions
-        {
-            get { return transactions; }
-            set
-            {
-                transactions = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        private TransactionDto? selectedTransaction;
-        public TransactionDto? SelectedTransaction
-        {
-            get { return selectedTransaction; }
-            set
-            {
-                selectedTransaction = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public MainViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+            TransactionsListViewModel = new(_transactionService);
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
@@ -46,30 +26,30 @@ namespace BudgetPlanner.Wpf.ViewModels
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
-            Transactions.Add(transaction);
+            TransactionsListViewModel.Transactions.Add(transaction);
         }
 
         public void UpdateSelectedTransaction()
         {
-            if (SelectedTransaction == null)
+            if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            _transactionService.Update(SelectedTransaction);
+            _transactionService.Update(TransactionsListViewModel.SelectedTransaction);
         }
 
         public void DeleteSelectedTransaction()
         {
-            if (SelectedTransaction is null)
+            if (TransactionsListViewModel.SelectedTransaction is null)
                 return;
-            _transactionService.Delete(SelectedTransaction);
-            Transactions.Remove(SelectedTransaction);
-            SelectedTransaction = null;
+            _transactionService.Delete(TransactionsListViewModel.SelectedTransaction);
+            TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
+            TransactionsListViewModel.SelectedTransaction = null;
         }
 
         public async Task LoadAsync()
         {
             if (_transactionService.GetAll().Any())
             {
-                Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
+                TransactionsListViewModel.Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
                 return;
             }
 

@@ -14,7 +14,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
+                <StackPanel Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
                     <ListView ItemsSource="{Binding Path=Transactions}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -36,7 +36,7 @@
                 <StackPanel Grid.Column="1">
                     <TabControl x:Name="AddEditTransactionTabGroup">
                         <TabItem x:Name="AddTab" Header="Add new">
-                            <StackPanel DataContext="{Binding AddTransactionViewModel}">
+                            <StackPanel DataContext="{Binding Path=AddTransactionViewModel}">
                                 <Label Content="Amount:" />
                                 <TextBox x:Name="NewAmount" Text="" />
 
@@ -75,7 +75,7 @@
                             </StackPanel>
                         </TabItem>
                         <TabItem x:Name="EditTab" Header="Edit">
-                            <StackPanel DataContext="{Binding EditTransactionViewModel}">
+                            <StackPanel DataContext="{Binding Path=EditTransactionViewModel}">
                                 <Label Content="Amount:"/>
                                 <TextBox x:Name="EditAmount" 
                                         Text="{Binding Path=SelectedTransaction.Amount}" />
