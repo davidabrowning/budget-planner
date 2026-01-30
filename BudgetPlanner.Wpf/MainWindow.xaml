@@ -81,7 +81,7 @@
 
                                 <Label Content="Month:"/>
                                 <ListBox x:Name="EditMonth"
-                                        ItemsSource="{Binding Path=Months}" 
+                                        ItemsSource="{Binding Path=AllMonths}" 
                                         SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -92,12 +92,12 @@
 
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="EditCategory" 
-                                         ItemsSource="{Binding Path=Categories}" 
+                                         ItemsSource="{Binding Path=AllCategories}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
 
                                 <Label Content="Frequency:"/>
                                 <ListBox x:Name="EditFrequency" 
-                                         ItemsSource="{Binding Path=Frequencies}" 
+                                         ItemsSource="{Binding Path=AllFrequencies}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
 
                                 <Label Content="Comment:"/>
