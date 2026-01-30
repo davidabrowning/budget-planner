@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace BudgetPlanner.Wpf.ViewModels
 {
-    public class TransactionsViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         private readonly ITransactionService _transactionService;
 
@@ -40,7 +40,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public Month DefaultMonth { get { return (Month)DateTime.Now.Month; } }
         public int DefaultYear { get { return DateTime.Now.Year; } }
 
-        public TransactionsViewModel(ITransactionService transactionService)
+        public MainViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });

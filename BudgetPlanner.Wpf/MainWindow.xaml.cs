@@ -22,7 +22,7 @@ namespace BudgetPlanner.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TransactionsViewModel _viewModel;
+        private MainViewModel _viewModel;
 
         public MainWindow()
         {
