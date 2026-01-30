@@ -11,6 +11,13 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class EditTransactionViewModel : ViewModelBase
     {
+        private ITransactionService _transactionService;
+
+        public EditTransactionViewModel(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
+
         private TransactionDto? selectedTransaction;
         public TransactionDto? SelectedTransaction
         {

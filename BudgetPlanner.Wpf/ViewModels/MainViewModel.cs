@@ -8,7 +8,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public EditTransactionViewModel EditTransactionViewModel { get; } = new();
+        public EditTransactionViewModel EditTransactionViewModel { get; }
         private readonly ITransactionService _transactionService;
 
         private ObservableCollection<TransactionDto> transactions = new();
@@ -44,6 +44,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public MainViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+            EditTransactionViewModel = new(_transactionService);
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
             _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
         }
