@@ -8,6 +8,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public AddTransactionViewModel AddTransactionViewModel { get; }
         public EditTransactionViewModel EditTransactionViewModel { get; }
         private readonly ITransactionService _transactionService;
 
@@ -33,17 +34,10 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
-        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
-        public static Category DefaultCategory { get { return Category.Unknown; } }
-        public static IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
-        public static Frequency DefaultFrequency { get { return Frequency.OneTime; } }
-        public static IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
-        public static Month DefaultMonth { get { return (Month)DateTime.Now.Month; } }
-        public static int DefaultYear { get { return DateTime.Now.Year; } }
-
         public MainViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+            AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
             _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });

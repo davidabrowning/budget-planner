@@ -29,8 +29,8 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
-        public IEnumerable<Category> AllCategories { get { return MainViewModel.AllCategories; } }
-        public IEnumerable<Frequency> AllFrequencies { get {  return MainViewModel.AllFrequencies; } }
-        public IEnumerable<Month> AllMonths { get { return MainViewModel.AllMonths; } }
+        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
+        public static IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
+        public static IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
     }
 }
