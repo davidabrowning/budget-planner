@@ -35,6 +35,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
         public Category DefaultCategory { get { return Category.Unknown; } }
         public IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
+        public Frequency DefaultFrequency { get { return Frequency.OneTime; } }
         public IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
 
         public TransactionsViewModel(ITransactionService transactionService)

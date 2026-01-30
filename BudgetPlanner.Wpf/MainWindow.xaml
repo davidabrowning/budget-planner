@@ -59,7 +59,8 @@
 
                                 <Label Content="Frequency:" />
                                 <ListBox x:Name="NewFrequency" 
-                                         ItemsSource="{Binding Path=AllFrequencies}"  />
+                                         ItemsSource="{Binding Path=AllFrequencies}" 
+                                         SelectedItem="{Binding Path=DefaultFrequency, Mode=OneWay}"/>
 
                                 <Label Content="Comment:" />
                                 <TextBox x:Name="NewComment" Text="" />
