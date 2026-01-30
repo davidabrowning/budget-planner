@@ -38,6 +38,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public Frequency DefaultFrequency { get { return Frequency.OneTime; } }
         public IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
         public Month DefaultMonth { get { return (Month)DateTime.Now.Month; } }
+        public int DefaultYear { get { return DateTime.Now.Year; } }
 
         public TransactionsViewModel(ITransactionService transactionService)
         {

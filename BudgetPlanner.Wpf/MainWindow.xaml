@@ -41,7 +41,8 @@
                                 <TextBox x:Name="NewAmount" Text="" />
 
                                 <Label Content="Year:" />
-                                <TextBox x:Name="NewYear" Text="" />
+                                <TextBox x:Name="NewYear" 
+                                         Text="{Binding Path=DefaultYear, Mode=OneWay}" />
 
                                 <Label Content="Month:" />
                                 <ListBox x:Name="NewMonth" 
