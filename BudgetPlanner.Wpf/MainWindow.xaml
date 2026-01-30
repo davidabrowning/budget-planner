@@ -54,7 +54,8 @@
 
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="NewCategory" 
-                                         ItemsSource="{Binding Path=AllCategories}" />
+                                         ItemsSource="{Binding Path=AllCategories}"
+                                         SelectedItem="{Binding Path=DefaultCategory, Mode=OneWay}" />
 
                                 <Label Content="Frequency:" />
                                 <ListBox x:Name="NewFrequency" 
