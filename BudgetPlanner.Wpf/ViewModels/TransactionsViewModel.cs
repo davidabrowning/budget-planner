@@ -10,9 +10,15 @@ namespace BudgetPlanner.Wpf.ViewModels
     {
         private readonly ITransactionService _transactionService;
 
-        public IEnumerable<TransactionDto> Transactions
+        private ObservableCollection<TransactionDto> transactions = new();
+        public ObservableCollection<TransactionDto> Transactions
         {
-            get { return _transactionService.GetAll(); }
+            get { return transactions; }
+            set
+            {
+                transactions = value;
+                RaisePropertyChanged();
+            }
         }
 
         private TransactionDto? selectedTransaction;
@@ -22,7 +28,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             set
             {
                 selectedTransaction = value;
-                RaisePropertyChanged(nameof(SelectedTransaction));
+                RaisePropertyChanged();
             }
         }
 
@@ -40,7 +46,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
-            RaisePropertyChanged(nameof(Transactions));
+            Transactions.Add(transaction);
         }
 
         public void UpdateSelectedTransaction()
@@ -48,7 +54,6 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (SelectedTransaction == null)
                 return;
             _transactionService.Update(SelectedTransaction);
-            RaisePropertyChanged(nameof(Transactions));
         }
 
         public void DeleteSelectedTransaction()
@@ -56,7 +61,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (SelectedTransaction is null)
                 return;
             _transactionService.Delete(SelectedTransaction);
-            RaisePropertyChanged(nameof(Transactions));
+            Transactions.Remove(SelectedTransaction);
             SelectedTransaction = null;
         }
 
@@ -64,6 +69,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (_transactionService.GetAll().Any())
             {
+                Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
                 return;
             }
 

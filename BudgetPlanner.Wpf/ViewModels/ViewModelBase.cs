@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace BudgetPlanner.Wpf.ViewModels
 {
@@ -6,7 +7,7 @@ namespace BudgetPlanner.Wpf.ViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void RaisePropertyChanged(string propertyName)
+        public void RaisePropertyChanged([CallerMemberName] string propertyName = null!)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
