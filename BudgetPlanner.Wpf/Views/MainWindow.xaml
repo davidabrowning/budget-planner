@@ -32,8 +32,6 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=Year}" Margin="5" />
-                                    <TextBlock Text="{Binding Path=Month}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Category}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Amount}" Margin="5" />
                                     <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
