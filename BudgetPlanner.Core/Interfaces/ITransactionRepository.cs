@@ -4,10 +4,10 @@ namespace BudgetPlanner.Core.Interfaces
 {
     public interface ITransactionRepository
     {
-        IEnumerable<Transaction> GetAll();
-        Transaction? GetById(int id);
-        Transaction Add(Transaction transaction);
-        Transaction? Update(Transaction transaction);
+        IEnumerable<BudgetTransaction> GetAll();
+        BudgetTransaction? GetById(int id);
+        BudgetTransaction Add(BudgetTransaction transaction);
+        BudgetTransaction? Update(BudgetTransaction transaction);
         bool Delete(int id);
     }
 }

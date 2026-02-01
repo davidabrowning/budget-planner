@@ -5,10 +5,10 @@ namespace BudgetPlanner.Data.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private List<Transaction> _transactions = new();
+        private List<BudgetTransaction> _transactions = new();
         private static int nextId = 0;
 
-        public Transaction Add(Transaction transaction)
+        public BudgetTransaction Add(BudgetTransaction transaction)
         {
             transaction.Id = nextId++;
             _transactions.Add(transaction);
@@ -17,26 +17,26 @@ namespace BudgetPlanner.Data.Repositories
 
         public bool Delete(int id)
         {
-            Transaction? transaction = GetById(id);
+            BudgetTransaction? transaction = GetById(id);
             if (transaction == null)
                 return false;
             _transactions.Remove(transaction);
             return true;
         }
 
-        public IEnumerable<Transaction> GetAll()
+        public IEnumerable<BudgetTransaction> GetAll()
         {
             return _transactions.ToList();
         }
 
-        public Transaction? GetById(int id)
+        public BudgetTransaction? GetById(int id)
         {
             return _transactions.FirstOrDefault(t => t.Id == id);
         }
 
-        public Transaction? Update(Transaction transaction)
+        public BudgetTransaction? Update(BudgetTransaction transaction)
         {
-            Transaction? existingTransaction = GetById(transaction.Id);
+            BudgetTransaction? existingTransaction = GetById(transaction.Id);
             if (existingTransaction == null)
                 return null;
 

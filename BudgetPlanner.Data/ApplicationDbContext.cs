@@ -10,7 +10,7 @@ namespace BudgetPlanner.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<BudgetTransaction> Transactions { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

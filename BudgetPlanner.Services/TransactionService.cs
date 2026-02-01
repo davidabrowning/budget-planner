@@ -15,8 +15,8 @@ namespace BudgetPlanner.Services
         }
         public TransactionDto Add(TransactionDto dto)
         {
-            Transaction model = TransactionMapper.ToModel(dto);
-            Transaction createdTransaction = _transactionRepository.Add(model);
+            BudgetTransaction model = TransactionMapper.ToModel(dto);
+            BudgetTransaction createdTransaction = _transactionRepository.Add(model);
             return TransactionMapper.ToDto(createdTransaction);
         }
 
@@ -28,7 +28,7 @@ namespace BudgetPlanner.Services
         public IEnumerable<TransactionDto> GetAll()
         {
             List<TransactionDto> dtos = new();
-            foreach (Transaction model in _transactionRepository.GetAll())
+            foreach (BudgetTransaction model in _transactionRepository.GetAll())
             {
                 dtos.Add(TransactionMapper.ToDto(model));
             }
@@ -37,7 +37,7 @@ namespace BudgetPlanner.Services
 
         public TransactionDto? GetById(int id)
         {
-            Transaction? model = _transactionRepository.GetById(id);
+            BudgetTransaction? model = _transactionRepository.GetById(id);
             if (model == null)
                 return null;
             return TransactionMapper.ToDto(model);
@@ -45,8 +45,8 @@ namespace BudgetPlanner.Services
 
         public TransactionDto? Update(TransactionDto dto)
         {
-            Transaction model = TransactionMapper.ToModel(dto);
-            Transaction? updatedTransaction = _transactionRepository.Update(model);
+            BudgetTransaction model = TransactionMapper.ToModel(dto);
+            BudgetTransaction? updatedTransaction = _transactionRepository.Update(model);
             if (updatedTransaction == null)
                 return null;
             return TransactionMapper.ToDto(updatedTransaction);
