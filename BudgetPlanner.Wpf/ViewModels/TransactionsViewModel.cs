@@ -6,15 +6,19 @@ using System.ComponentModel;
 
 namespace BudgetPlanner.Wpf.ViewModels
 {
-    public class TransactionsViewModel : INotifyPropertyChanged
+    public class TransactionsViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
         private readonly ITransactionService _transactionService;
 
-        public IEnumerable<TransactionDto> Transactions
+        private ObservableCollection<TransactionDto> transactions = new();
+        public ObservableCollection<TransactionDto> Transactions
         {
-            get { return _transactionService.GetAll(); }
+            get { return transactions; }
+            set
+            {
+                transactions = value;
+                RaisePropertyChanged();
+            }
         }
 
         private TransactionDto? selectedTransaction;
@@ -24,13 +28,13 @@ namespace BudgetPlanner.Wpf.ViewModels
             set
             {
                 selectedTransaction = value;
-                RaisePropertyChanged(nameof(SelectedTransaction));
+                RaisePropertyChanged();
             }
         }
 
-        public IEnumerable<Category> Categories { get { return CategoryLookup.All; } }
-        public IEnumerable<Frequency> Frequencies { get { return FrequencyLookup.All; } }
-        public IEnumerable<Month> Months { get { return MonthLookup.All; } }
+        public IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
+        public IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
+        public IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
 
         public TransactionsViewModel(ITransactionService transactionService)
         {
@@ -42,7 +46,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
-            RaisePropertyChanged(nameof(Transactions));
+            Transactions.Add(transaction);
         }
 
         public void UpdateSelectedTransaction()
@@ -50,7 +54,6 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (SelectedTransaction == null)
                 return;
             _transactionService.Update(SelectedTransaction);
-            RaisePropertyChanged(nameof(Transactions));
         }
 
         public void DeleteSelectedTransaction()
@@ -58,7 +61,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (SelectedTransaction is null)
                 return;
             _transactionService.Delete(SelectedTransaction);
-            RaisePropertyChanged(nameof(Transactions));
+            Transactions.Remove(SelectedTransaction);
             SelectedTransaction = null;
         }
 
@@ -66,15 +69,11 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (_transactionService.GetAll().Any())
             {
+                Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
                 return;
             }
 
             // Otherwise, load transactions from database
-        }
-
-        public void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
