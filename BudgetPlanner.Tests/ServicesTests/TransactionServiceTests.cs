@@ -16,26 +16,26 @@ namespace BudgetPlanner.Tests.ServicesTests
         }
 
         [Fact]
-        public void Add_WhenCalled_AddTransaction()
+        public async Task Add_WhenCalled_AddTransaction()
         {
             // Arrange
             TransactionDto transactionDto = new() { Amount = 42 };
 
             // Act
-            _transactionService.Add(transactionDto);
+            _transactionService.AddAsync(transactionDto);
 
             // Assert
-            Assert.Contains(transactionDto, _transactionService.GetAll());
+            Assert.Contains(transactionDto, await _transactionService.GetAllAsync());
         }
 
         [Fact]
-        public void AddedTransaction_WhenNoFrequncyGiven_ShouldBeOneTime()
+        public async Task AddedTransaction_WhenNoFrequncyGiven_ShouldBeOneTime()
         {
             // Arrange
             TransactionDto transactionDto = new();
 
             // Act
-            TransactionDto addedTransactionDto = _transactionService.Add(transactionDto);
+            TransactionDto addedTransactionDto = await _transactionService.AddAsync(transactionDto);
 
             // Assert
             Assert.Equal(Frequency.OneTime, addedTransactionDto.Frequency);

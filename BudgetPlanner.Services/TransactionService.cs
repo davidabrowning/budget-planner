@@ -13,40 +13,40 @@ namespace BudgetPlanner.Services
         {
             _transactionRepository = transactionRepository;
         }
-        public TransactionDto Add(TransactionDto dto)
+        public async Task<TransactionDto> AddAsync(TransactionDto dto)
         {
             BudgetTransaction model = TransactionMapper.ToModel(dto);
-            BudgetTransaction createdTransaction = _transactionRepository.Add(model);
+            BudgetTransaction createdTransaction = await _transactionRepository.AddAsync(model);
             return TransactionMapper.ToDto(createdTransaction);
         }
 
-        public bool Delete(TransactionDto dto)
+        public async Task<bool> DeleteAsync(TransactionDto dto)
         {
-            return _transactionRepository.Delete(dto.Id);
+            return await _transactionRepository.DeleteAsync(dto.Id);
         }
 
-        public IEnumerable<TransactionDto> GetAll()
+        public async Task<IEnumerable<TransactionDto>> GetAllAsync()
         {
             List<TransactionDto> dtos = new();
-            foreach (BudgetTransaction model in _transactionRepository.GetAll())
+            foreach (BudgetTransaction model in await _transactionRepository.GetAllAsync())
             {
                 dtos.Add(TransactionMapper.ToDto(model));
             }
             return dtos;
         }
 
-        public TransactionDto? GetById(int id)
+        public async Task<TransactionDto?> GetByIdAsync(int id)
         {
-            BudgetTransaction? model = _transactionRepository.GetById(id);
+            BudgetTransaction? model = await _transactionRepository.GetByIdAsync(id);
             if (model == null)
                 return null;
             return TransactionMapper.ToDto(model);
         }
 
-        public TransactionDto? Update(TransactionDto dto)
+        public async Task<TransactionDto?> UpdateAsync(TransactionDto dto)
         {
             BudgetTransaction model = TransactionMapper.ToModel(dto);
-            BudgetTransaction? updatedTransaction = _transactionRepository.Update(model);
+            BudgetTransaction? updatedTransaction = await _transactionRepository.UpdateAsync(model);
             if (updatedTransaction == null)
                 return null;
             return TransactionMapper.ToDto(updatedTransaction);

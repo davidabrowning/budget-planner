@@ -30,8 +30,7 @@ namespace BudgetPlanner.Wpf.Views
         public MainWindow()
         {
             InitializeComponent();
-            ApplicationDbContext dbContext = new ApplicationDbContext();
-            TransactionRepository transactionRepository = new(dbContext);
+            TransactionRepository transactionRepository = new();
             TransactionService transactionService = new(transactionRepository);
             _viewModel = new(transactionService);
             DataContext = _viewModel;

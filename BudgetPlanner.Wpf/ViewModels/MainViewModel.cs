@@ -25,7 +25,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public void AddTransaction(TransactionDto transaction)
         {
-            _transactionService.Add(transaction);
+            _transactionService.AddAsync(transaction);
             TransactionsListViewModel.AddTransaction(transaction);
         }
 
@@ -39,7 +39,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            _transactionService.Update(TransactionsListViewModel.SelectedTransaction);
+            _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
             MonthlyForecastViewModel.RefreshTransactionList();
         }
 
@@ -47,7 +47,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (TransactionsListViewModel.SelectedTransaction is null)
                 return;
-            _transactionService.Delete(TransactionsListViewModel.SelectedTransaction);
+            _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
             MonthlyForecastViewModel.RefreshTransactionList();

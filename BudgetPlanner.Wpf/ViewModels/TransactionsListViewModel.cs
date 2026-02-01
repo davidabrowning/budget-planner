@@ -51,9 +51,9 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task LoadAsync()
         {
-            if (_transactionService.GetAll().Any())
+            if ((await _transactionService.GetAllAsync()).Any())
             {
-                foreach (TransactionDto transactionDto in _transactionService.GetAll())
+                foreach (TransactionDto transactionDto in await _transactionService.GetAllAsync())
                     AddTransaction(transactionDto);
                 return;
             }
