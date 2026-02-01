@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:BudgetPlanner.Wpf"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="TopMenuBackgroundColor" Color="Green" />
     </Application.Resources>
 </Application>
