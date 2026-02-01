@@ -6,6 +6,13 @@
         xmlns:local="clr-namespace:BudgetPlanner.Wpf.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="BorderThickness" Value="0" />
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -14,36 +21,36 @@
         <TextBlock Text="Budget Planner" Grid.Row="0" Background="{StaticResource TopMenuBackgroundColor}" />
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
-                    <ListView ItemsSource="{Binding Path=TransactionsView}" 
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
+                <ListView ItemsSource="{Binding Path=TransactionsView}" 
                               ScrollViewer.VerticalScrollBarVisibility="Auto">
-                        <ListView.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Name}" Margin="5" FontWeight="Bold" />
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ListView.GroupStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Button x:Name="EditTransactionButton" 
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}" Margin="5" FontWeight="Bold" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Button x:Name="EditTransactionButton" 
                                             Click="EditTransactionButton_Click">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Path=Category}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Amount}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Comment}" Margin="5" />
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Category}" Margin="5" />
+                                    <TextBlock Text="{Binding Path=Amount}" Margin="5" />
+                                    <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
+                                    <TextBlock Text="{Binding Path=Comment}" Margin="5" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
             <Grid Grid.Column="1">
                 <TabControl x:Name="AddEditTransactionTabGroup">
                     <TabItem x:Name="AddTab" Header="Add new">
