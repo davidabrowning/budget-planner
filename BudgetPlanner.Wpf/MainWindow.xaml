@@ -41,10 +41,13 @@
                                 <TextBox x:Name="NewAmount" Text="" />
 
                                 <Label Content="Year:" />
-                                <TextBox x:Name="NewYear" Text="" />
+                                <TextBox x:Name="NewYear" 
+                                         Text="{Binding Path=DefaultYear, Mode=OneWay}" />
 
                                 <Label Content="Month:" />
-                                <ListBox x:Name="NewMonth" ItemsSource="{Binding Path=AllMonths}">
+                                <ListBox x:Name="NewMonth" 
+                                         ItemsSource="{Binding Path=AllMonths}" 
+                                         SelectedItem="{Binding Path=DefaultMonth, Mode=OneWay}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal" />
@@ -54,11 +57,13 @@
 
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="NewCategory" 
-                                         ItemsSource="{Binding Path=AllCategories}" />
+                                         ItemsSource="{Binding Path=AllCategories}"
+                                         SelectedItem="{Binding Path=DefaultCategory, Mode=OneWay}" />
 
                                 <Label Content="Frequency:" />
                                 <ListBox x:Name="NewFrequency" 
-                                         ItemsSource="{Binding Path=AllFrequencies}"  />
+                                         ItemsSource="{Binding Path=AllFrequencies}" 
+                                         SelectedItem="{Binding Path=DefaultFrequency, Mode=OneWay}"/>
 
                                 <Label Content="Comment:" />
                                 <TextBox x:Name="NewComment" Text="" />
@@ -81,7 +86,7 @@
 
                                 <Label Content="Month:"/>
                                 <ListBox x:Name="EditMonth"
-                                        ItemsSource="{Binding Path=Months}" 
+                                        ItemsSource="{Binding Path=AllMonths}" 
                                         SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -92,12 +97,12 @@
 
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="EditCategory" 
-                                         ItemsSource="{Binding Path=Categories}" 
+                                         ItemsSource="{Binding Path=AllCategories}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
 
                                 <Label Content="Frequency:"/>
                                 <ListBox x:Name="EditFrequency" 
-                                         ItemsSource="{Binding Path=Frequencies}" 
+                                         ItemsSource="{Binding Path=AllFrequencies}" 
                                          SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
 
                                 <Label Content="Comment:"/>
