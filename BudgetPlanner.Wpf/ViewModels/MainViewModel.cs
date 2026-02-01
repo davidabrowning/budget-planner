@@ -23,10 +23,11 @@ namespace BudgetPlanner.Wpf.ViewModels
             MonthlyForecastViewModel = new(_transactionService);
         }
 
-        public void AddTransaction(TransactionDto transaction)
+        public async void AddTransaction(TransactionDto transaction)
         {
-            _transactionService.AddAsync(transaction);
+            await _transactionService.AddAsync(transaction);
             TransactionsListViewModel.AddTransaction(transaction);
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public void SetSelectedTransaction(TransactionDto newSelectedTransaction)
@@ -35,27 +36,29 @@ namespace BudgetPlanner.Wpf.ViewModels
             EditTransactionViewModel.SelectedTransaction = newSelectedTransaction;
         }
 
-        public void UpdateSelectedTransaction()
+        public async void UpdateSelectedTransaction(TransactionDto editedTransaction)
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
-            MonthlyForecastViewModel.RefreshTransactionList();
+            editedTransaction.Id = TransactionsListViewModel.SelectedTransaction.Id;
+            await _transactionService.UpdateAsync(editedTransaction);
+            await LoadAsync();
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
-        public void DeleteSelectedTransaction()
+        public async void DeleteSelectedTransaction()
         {
             if (TransactionsListViewModel.SelectedTransaction is null)
                 return;
-            _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
+            await _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
-            MonthlyForecastViewModel.RefreshTransactionList();
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
-        public void RefreshTabData()
+        public async void RefreshTabData()
         {
-            MonthlyForecastViewModel.RefreshTransactionList();
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public async Task LoadAsync()

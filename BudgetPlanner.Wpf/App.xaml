@@ -4,6 +4,14 @@
              xmlns:local="clr-namespace:BudgetPlanner.Wpf"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="AccentLightest" Color="White" />
+        <SolidColorBrush x:Key="AccentLighter" Color="#FFFBB1" />
+        <SolidColorBrush x:Key="AccentLight" Color="#D8E983" />
+        <SolidColorBrush x:Key="AccentMedium" Color="#A5C89E" />
+        <SolidColorBrush x:Key="AccentDark" Color="#AEB877" />
+        <SolidColorBrush x:Key="AccentDarker" Color="#36656B" />
+        <SolidColorBrush x:Key="AccentDarkest" Color="Black" />
+        <SolidColorBrush x:Key="AccentAction" Color="SkyBlue" />
+        <SolidColorBrush x:Key="AccentWarning" Color="#FFB76C" />
     </Application.Resources>
 </Application>

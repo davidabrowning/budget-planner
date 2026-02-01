@@ -13,6 +13,10 @@ namespace BudgetPlanner.Wpf.ViewModels
 {
     public class MonthlyForecastViewModel : ViewModelBase
     {
+        public int CurrentYear { get; } = DateTime.Now.Year;
+        public int TotalIncomes { get { return MonthlySummaryList.Where(ms => ms.Year == CurrentYear).Sum(ms => ms.Incomes); } }
+        public int TotalExpenses { get { return MonthlySummaryList.Where(ms => ms.Year == CurrentYear).Sum(ms => ms.Expenses); } }
+        public int TotalNet { get { return TotalIncomes - TotalExpenses; } }
         private readonly ITransactionService _transactionService;
         public MonthlyForecastViewModel(ITransactionService transactionService)
         {
@@ -32,14 +36,19 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task LoadAsync()
         {
+            MonthlySummaryList.Clear();
             foreach (Month month in MonthLookup.All)
-                MonthlySummaryList.Add(new MonthlySummary { Month = month, Year = DateTime.Now.Year });
+                MonthlySummaryList.Add(new MonthlySummary { Month = month, Year = CurrentYear });
             if ((await _transactionService.GetAllAsync()).Any())
             {
                 foreach (TransactionDto transactionDto in await _transactionService.GetAllAsync())
                     AddTransaction(transactionDto);
+                RaisePropertyChanged(nameof(TotalIncomes));
+                RaisePropertyChanged(nameof(TotalExpenses));
+                RaisePropertyChanged(nameof(TotalNet));
                 return;
             }
+            
         }
 
         public void AddTransaction(TransactionDto transactionDto)
@@ -71,7 +80,6 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task RefreshTransactionList()
         {
-            MonthlySummaryList.Clear();
             await LoadAsync();
         }
     }

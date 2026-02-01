@@ -17,5 +17,7 @@
             (Category)10,
             (Category)11,
         };
+
+        public static List<Category> AllSorted { get { return All.OrderBy(c => c.ToString()).ToList(); } }
     }
 }

@@ -60,14 +60,19 @@ namespace BudgetPlanner.Wpf.Views
             AddEditTransactionTabGroup.SelectedItem = EditTab;
         }
 
+        private void SaveChangesTransactionButton_Click(object sender, RoutedEventArgs e)
+        {
+            TransactionDto? editedTransaction = GetEditedTransaction();
+            if (editedTransaction == null) 
+                return;
+            _viewModel.UpdateSelectedTransaction(editedTransaction);
+            AddEditTransactionTabGroup.SelectedItem = AddTab;
+        }
+
         private void DeleteTransactionButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.DeleteSelectedTransaction();
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _viewModel.RefreshTabData();
+            AddEditTransactionTabGroup.SelectedItem = AddTab;
         }
 
         private TransactionDto? GetClickedTransaction(object sender)
@@ -99,6 +104,36 @@ namespace BudgetPlanner.Wpf.Views
                     Month = month
                 };
                 return newTransaction;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        private TransactionDto? GetEditedTransaction()
+        {
+            try
+            {
+                string amountString = EditAmount.Text;
+                string commentString = EditComment.Text;
+                Category category = (Category)EditCategory.SelectedItem;
+                Frequency frequency = (Frequency)EditFrequency.SelectedItem;
+                string yearString = EditYear.Text;
+                Month month = (Month)EditMonth.SelectedItem;
+                int amountInt = Convert.ToInt32(amountString);
+                int yearInt = Convert.ToInt32(yearString);
+                TransactionDto editedTransaction = new TransactionDto()
+                {
+                    Amount = amountInt,
+                    Comment = commentString,
+                    Category = category,
+                    Frequency = frequency,
+                    Year = yearInt,
+                    Month = month
+                };
+                return editedTransaction;
             }
             catch (Exception ex)
             {

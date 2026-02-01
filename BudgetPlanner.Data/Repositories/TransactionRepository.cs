@@ -6,6 +6,11 @@ namespace BudgetPlanner.Data.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
+        //private readonly ApplicationDbContext context;
+        public TransactionRepository()
+        {
+            //context = new();
+        }
         public async Task<BudgetTransaction> AddAsync(BudgetTransaction transaction)
         {
             ApplicationDbContext context = new();
@@ -50,6 +55,7 @@ namespace BudgetPlanner.Data.Repositories
             existingTransaction.Frequency = transaction.Frequency;
             existingTransaction.Category = transaction.Category;
             existingTransaction.Comment = transaction.Comment;
+            context.Update(existingTransaction);
             await context.SaveChangesAsync();
 
             return existingTransaction;

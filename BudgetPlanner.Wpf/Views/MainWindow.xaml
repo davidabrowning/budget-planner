@@ -5,144 +5,222 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetPlanner.Wpf.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
+        Title="Dave's Budget Planner" Height="1000" Width="1600">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="16" />
+            </Style.Setters>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="16" />
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="Budget Planner" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
-                    <ListView ItemsSource="{Binding Path=TransactionsView}">
-                        <ListView.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Name}" Margin="5" FontWeight="Bold" />
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ListView.GroupStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Button x:Name="EditTransactionButton" 
-                                            Click="EditTransactionButton_Click">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Path=Category}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Amount}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
-                                        <TextBlock Text="{Binding Path=Comment}" Margin="5" />
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TabControl x:Name="AddEditTransactionTabGroup" SelectionChanged="TabControl_SelectionChanged">
-                        <TabItem x:Name="AddTab" Header="Add new">
-                            <StackPanel DataContext="{Binding Path=AddTransactionViewModel}">
-                                <Label Content="Amount:" />
-                                <TextBox x:Name="NewAmount" Text="" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock 
+                    Text="Dave's Budget Planner" 
+                    Grid.Row="0" 
+                    Padding="5"
+                    FontSize="32"
+                    Foreground="{StaticResource AccentDarker}"
+                    Background="{StaticResource AccentMedium}" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
+                <ListView ItemsSource="{Binding Path=TransactionsView}" 
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          HorizontalContentAlignment="Stretch">
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}" Padding="5" FontWeight="Bold"
+                                               Foreground="{StaticResource AccentDarker}"
+                                               Background="{StaticResource AccentMedium}" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Button x:Name="EditTransactionButton" 
+                                    Click="EditTransactionButton_Click"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    Background="{StaticResource AccentLightest}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Amount, StringFormat={}{0}:-}" Padding="5" Width="100" />
+                                    <TextBlock Text="{Binding Path=Category}" Padding="5" Width="150" />
+                                    <TextBlock Text="{Binding Path=Frequency, StringFormat=({0})}" Padding="5" Width="100" />
+                                    <TextBlock Text="{Binding Path=Comment, StringFormat=Comment: {0}}" Padding="5" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Style.Setters>
+                            <Setter Property="Foreground" Value="{StaticResource AccentDarkest}" />
+                            <Setter Property="Background" Value="{StaticResource AccentAction}" />
+                            <Setter Property="Padding" Value="15" />
+                            <Setter Property="Padding" Value="15" />
+                            <Setter Property="Margin" Value="15 15 15 0" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 15 15 0" />
+                            <Setter Property="FontSize" Value="16" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 0 15 0" />
+                            <Setter Property="FontSize" Value="16" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="ListBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 0 15 0" />
+                            <Setter Property="FontSize" Value="16" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="TabItem">
+                        <Style.Setters>
+                            <Setter Property="FontSize" Value="16" />
+                        </Style.Setters>
+                    </Style>
+                </Grid.Resources>
+                <TabControl x:Name="AddEditTransactionTabGroup">
+                    <TabItem x:Name="AddTab" Header="Add new">
+                        <StackPanel DataContext="{Binding Path=AddTransactionViewModel}">
+                            <Label Content="Comment:" />
+                            <TextBox x:Name="NewComment" Text="" />
+                            
+                            <Label Content="Amount:" />
+                            <TextBox x:Name="NewAmount" Text="" />
 
-                                <Label Content="Year:" />
-                                <TextBox x:Name="NewYear" 
+                            <Label Content="Year:" />
+                            <TextBox x:Name="NewYear" 
                                          Text="{Binding Path=DefaultYear, Mode=OneWay}" />
 
-                                <Label Content="Month:" />
-                                <ListBox x:Name="NewMonth" 
+                            <Label Content="Month:" />
+                            <ListBox x:Name="NewMonth" 
                                          ItemsSource="{Binding Path=AllMonths}" 
                                          SelectedItem="{Binding Path=DefaultMonth, Mode=OneWay}">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                </ListBox>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
 
-                                <Label Content="Category:"/>
-                                <ListBox x:Name="NewCategory" 
+                            <Label Content="Category:"/>
+                            <ListBox x:Name="NewCategory" 
                                          ItemsSource="{Binding Path=AllCategories}"
                                          SelectedItem="{Binding Path=DefaultCategory, Mode=OneWay}" />
 
-                                <Label Content="Frequency:" />
-                                <ListBox x:Name="NewFrequency" 
+                            <Label Content="Frequency:" />
+                            <ListBox x:Name="NewFrequency" 
                                          ItemsSource="{Binding Path=AllFrequencies}" 
                                          SelectedItem="{Binding Path=DefaultFrequency, Mode=OneWay}"/>
 
-                                <Label Content="Comment:" />
-                                <TextBox x:Name="NewComment" Text="" />
-
-                                <Button x:Name="AddTransactionButton"
+                            <Button x:Name="AddTransactionButton"
                                         Content="Add transaction"
-                                        Click="AddTransactionButton_Click"
-                                        Margin="5"/>
-                            </StackPanel>
-                        </TabItem>
-                        <TabItem x:Name="EditTab" Header="Edit">
-                            <StackPanel DataContext="{Binding Path=EditTransactionViewModel}">
-                                <Label Content="Amount:"/>
-                                <TextBox x:Name="EditAmount" 
-                                        Text="{Binding Path=SelectedTransaction.Amount}" />
+                                        Click="AddTransactionButton_Click"/>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem x:Name="EditTab" Header="Edit">
+                        <StackPanel DataContext="{Binding Path=EditTransactionViewModel}" >
+                            <Label Content="Comment:"/>
+                            <TextBox x:Name="EditComment" 
+                                        Text="{Binding Path=SelectedTransaction.Comment, Mode=OneWay}" />
+                            
+                            <Label Content="Amount:"/>
+                            <TextBox x:Name="EditAmount" 
+                                        Text="{Binding Path=SelectedTransaction.Amount, Mode=OneWay}" />
 
-                                <Label Content="Year:"/>
-                                <TextBox x:Name="EditYear" 
-                                        Text="{Binding Path=SelectedTransaction.Year}" />
+                            <Label Content="Year:"/>
+                            <TextBox x:Name="EditYear" 
+                                        Text="{Binding Path=SelectedTransaction.Year, Mode=OneWay}" />
 
-                                <Label Content="Month:"/>
-                                <ListBox x:Name="EditMonth"
+                            <Label Content="Month:"/>
+                            <ListBox x:Name="EditMonth"
                                         ItemsSource="{Binding Path=AllMonths}" 
-                                        SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                </ListBox>
+                                        SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=OneWay}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
 
-                                <Label Content="Category:"/>
-                                <ListBox x:Name="EditCategory" 
+                            <Label Content="Category:"/>
+                            <ListBox x:Name="EditCategory" 
                                          ItemsSource="{Binding Path=AllCategories}" 
-                                         SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
+                                         SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=OneWay}" />
 
-                                <Label Content="Frequency:"/>
-                                <ListBox x:Name="EditFrequency" 
+                            <Label Content="Frequency:"/>
+                            <ListBox x:Name="EditFrequency" 
                                          ItemsSource="{Binding Path=AllFrequencies}" 
-                                         SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
+                                         SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=OneWay}" />
 
-                                <Label Content="Comment:"/>
-                                <TextBox x:Name="EditComment" 
-                                        Text="{Binding Path=SelectedTransaction.Comment}" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Button x:Name="SaveChangesTransactionButton"
+                                        Grid.Column="0"
+                                        Content="Save changes"
+                                        Click="SaveChangesTransactionButton_Click"/>
 
                                 <Button x:Name="DeleteTransactionButton"
+                                        Grid.Column="1"
                                         Content="Delete transaction"
                                         Click="DeleteTransactionButton_Click"
-                                        Margin="5"/>
+                                        Background="{StaticResource AccentWarning}" />
+                            </Grid>
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem x:Name="MonthlyForecast" Header="Forecast">
+                        <StackPanel DataContext="{Binding Path=MonthlyForecastViewModel}">
+                            <ListView ItemsSource="{Binding Path=MonthlySummaryList}" BorderThickness="0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=Month}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Incomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Expenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Net, StringFormat={}{0}:- net}" Margin="5" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=CurrentYear, StringFormat={}{0} total}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalIncomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalExpenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalNet, StringFormat={}{0}:- net}" Margin="5" />
                             </StackPanel>
-                        </TabItem>
-                        <TabItem x:Name="MonthlyForecast" Header="Monthly Forecast">
-                            <StackPanel DataContext="{Binding Path=MonthlyForecastViewModel}">
-                                <ListView ItemsSource="{Binding Path=MonthlySummaryList}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Path=Year}" Margin="5" />
-                                                <TextBlock Text="{Binding Path=Month}" Margin="5" />
-                                                <TextBlock Text="{Binding Path=Incomes}" Margin="5" />
-                                                <TextBlock Text="{Binding Path=Expenses}" Margin="5" />
-                                                <TextBlock Text="=>" Margin="5" />
-                                                <TextBlock Text="{Binding Path=Net}" Margin="5" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackPanel>
-                        </TabItem>
-                    </TabControl>
-                </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
             </Grid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Window>
