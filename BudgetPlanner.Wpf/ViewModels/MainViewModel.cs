@@ -21,15 +21,6 @@ namespace BudgetPlanner.Wpf.ViewModels
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
             MonthlyForecastViewModel = new(_transactionService);
-            SeedInitialTransactions();
-        }
-
-        private void SeedInitialTransactions()
-        {
-            _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
-            _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
-            _transactionService.Add(new TransactionDto() { Amount = -1000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Jan groceries", Month = Month.Jan, Year = 2026 });
-            _transactionService.Add(new TransactionDto() { Amount = -2000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Feb groceries", Month = Month.Feb, Year = 2026 });
         }
 
         public void AddTransaction(TransactionDto transaction)

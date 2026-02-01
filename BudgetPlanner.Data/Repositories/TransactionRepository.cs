@@ -16,8 +16,8 @@ namespace BudgetPlanner.Data.Repositories
 
         public BudgetTransaction Add(BudgetTransaction transaction)
         {
-            transaction.Id = nextId++;
-            _transactions.Add(transaction);
+            _dbContext.Add(transaction);
+            _dbContext.SaveChanges();
             return transaction;
         }
 
