@@ -12,5 +12,6 @@
         <SolidColorBrush x:Key="AccentDarker" Color="#36656B" />
         <SolidColorBrush x:Key="AccentDarkest" Color="Black" />
         <SolidColorBrush x:Key="AccentAction" Color="SkyBlue" />
+        <SolidColorBrush x:Key="AccentWarning" Color="#FFB76C" />
     </Application.Resources>
 </Application>
