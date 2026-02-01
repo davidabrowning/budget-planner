@@ -67,8 +67,8 @@
                 <Grid.Resources>
                     <Style TargetType="Button">
                         <Style.Setters>
-                            <Setter Property="Foreground" Value="{StaticResource AccentLighter}" />
-                            <Setter Property="Background" Value="{StaticResource AccentDarker}" />
+                            <Setter Property="Foreground" Value="{StaticResource AccentDarkest}" />
+                            <Setter Property="Background" Value="{StaticResource AccentAction}" />
                             <Setter Property="Padding" Value="15" />
                             <Setter Property="Padding" Value="15" />
                         </Style.Setters>
@@ -160,27 +160,25 @@
                                         Margin="5"/>
                         </StackPanel>
                     </TabItem>
-                    <TabItem x:Name="MonthlyForecast" Header="Monthly Forecast">
+                    <TabItem x:Name="MonthlyForecast" Header="Forecast">
                         <StackPanel DataContext="{Binding Path=MonthlyForecastViewModel}">
-                            <ListView ItemsSource="{Binding Path=MonthlySummaryList}">
+                            <ListView ItemsSource="{Binding Path=MonthlySummaryList}" BorderThickness="0">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Path=Month}" Margin="5" />
-                                            <TextBlock Text="{Binding Path=Incomes}" Margin="5" />
-                                            <TextBlock Text="{Binding Path=Expenses}" Margin="5" />
-                                            <TextBlock Text="=>" Margin="5" />
-                                            <TextBlock Text="{Binding Path=Net}" Margin="5" />
+                                            <TextBlock Text="{Binding Path=Month}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Incomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Expenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
+                                            <TextBlock Text="{Binding Path=Net, StringFormat={}{0}:- net}" Margin="5" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=CurrentYear}" Margin="5" />
-                                <TextBlock Text="{Binding Path=TotalIncomes}" Margin="5" />
-                                <TextBlock Text="{Binding Path=TotalExpenses}" Margin="5" />
-                                <TextBlock Text="=>" Margin="5" />
-                                <TextBlock Text="{Binding Path=TotalNet}" Margin="5" />
+                                <TextBlock Text="{Binding Path=CurrentYear, StringFormat={}{0} total}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalIncomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalExpenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
+                                <TextBlock Text="{Binding Path=TotalNet, StringFormat={}{0}:- net}" Margin="5" />
                             </StackPanel>
                         </StackPanel>
                     </TabItem>
