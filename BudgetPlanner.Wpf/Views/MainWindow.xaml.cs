@@ -30,9 +30,7 @@ namespace BudgetPlanner.Wpf.Views
         public MainWindow()
         {
             InitializeComponent();
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BudgetPlanner;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-            DbContextOptions<ApplicationDbContext> options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(connectionString).Options;
-            ApplicationDbContext dbContext = new ApplicationDbContext(options);
+            ApplicationDbContext dbContext = new ApplicationDbContext();
             TransactionRepository transactionRepository = new(dbContext);
             TransactionService transactionService = new(transactionRepository);
             _viewModel = new(transactionService);

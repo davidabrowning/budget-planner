@@ -10,10 +10,12 @@ namespace BudgetPlanner.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<BudgetTransaction> Transactions { get; set; }
+        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BudgetPlanner;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+        public DbSet<BudgetTransaction> BudgetTransactions { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
 }
