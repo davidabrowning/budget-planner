@@ -23,10 +23,11 @@ namespace BudgetPlanner.Wpf.ViewModels
             MonthlyForecastViewModel = new(_transactionService);
         }
 
-        public void AddTransaction(TransactionDto transaction)
+        public async void AddTransaction(TransactionDto transaction)
         {
-            _transactionService.AddAsync(transaction);
+            await _transactionService.AddAsync(transaction);
             TransactionsListViewModel.AddTransaction(transaction);
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public void SetSelectedTransaction(TransactionDto newSelectedTransaction)
