@@ -17,7 +17,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             _transactionService = transactionService;
         }
 
-        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
+        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.AllSorted; } }
         public static Category DefaultCategory { get { return Category.Unknown; } }
         public static IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
         public static Frequency DefaultFrequency { get { return Frequency.OneTime; } }

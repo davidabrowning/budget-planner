@@ -29,7 +29,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             }
         }
 
-        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.All; } }
+        public static IEnumerable<Category> AllCategories { get { return CategoryLookup.AllSorted; } }
         public static IEnumerable<Frequency> AllFrequencies { get { return FrequencyLookup.All; } }
         public static IEnumerable<Month> AllMonths { get { return MonthLookup.All; } }
     }
