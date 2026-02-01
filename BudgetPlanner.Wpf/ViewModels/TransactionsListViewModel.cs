@@ -3,19 +3,27 @@ using BudgetPlanner.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace BudgetPlanner.Wpf.ViewModels
 {
     public class TransactionsListViewModel : ViewModelBase
     {
         private readonly ITransactionService _transactionService;
+        public ICollectionView TransactionsView { get; }
 
         public TransactionsListViewModel(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+            Transactions = new ObservableCollection<TransactionDto>();
+            TransactionsView = CollectionViewSource.GetDefaultView(Transactions);
+            TransactionsView.GroupDescriptions.Add(new PropertyGroupDescription(nameof(TransactionDto.Month)));
+            TransactionsView.SortDescriptions.Clear();
+            TransactionsView.SortDescriptions.Add(new SortDescription(nameof(TransactionDto.Month), ListSortDirection.Ascending));
         }
 
         private ObservableCollection<TransactionDto> transactions = new();
@@ -44,7 +52,8 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (_transactionService.GetAll().Any())
             {
-                Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
+                foreach (TransactionDto transactionDto in _transactionService.GetAll())
+                    Transactions.Add(transactionDto);
                 return;
             }
 

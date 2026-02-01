@@ -15,7 +15,20 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" DataContext="{Binding Path=TransactionsListViewModel}">
-                    <ListView ItemsSource="{Binding Path=Transactions}">
+                    <ListView ItemsSource="{Binding Path=TransactionsView}">
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                                    Text="{Binding Path=Name}"
+                                                    FontWeight="Bold"
+                                                    FontSize="16"
+                                                    Margin="0,10,0,5"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
