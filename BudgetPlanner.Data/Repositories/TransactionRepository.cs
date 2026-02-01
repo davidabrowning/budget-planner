@@ -1,42 +1,48 @@
 ﻿using BudgetPlanner.Core.Interfaces;
 using BudgetPlanner.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BudgetPlanner.Data.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private List<Transaction> _transactions = new();
-        private static int nextId = 0;
-
-        public Transaction Add(Transaction transaction)
+        public async Task<BudgetTransaction> AddAsync(BudgetTransaction transaction)
         {
-            transaction.Id = nextId++;
-            _transactions.Add(transaction);
+            ApplicationDbContext context = new();
+            await context.AddAsync(transaction);
+            await context.SaveChangesAsync();
             return transaction;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            Transaction? transaction = GetById(id);
+            ApplicationDbContext context = new();
+            BudgetTransaction? transaction = await GetByIdAsync(id);
             if (transaction == null)
                 return false;
-            _transactions.Remove(transaction);
+
+            context.Remove(transaction);
+            await context.SaveChangesAsync();
+
             return true;
         }
 
-        public IEnumerable<Transaction> GetAll()
+        public async Task<IEnumerable<BudgetTransaction>> GetAllAsync()
         {
-            return _transactions.ToList();
+            ApplicationDbContext context = new();
+            return await context.BudgetTransactions.ToListAsync();
         }
 
-        public Transaction? GetById(int id)
+        public async Task<BudgetTransaction?> GetByIdAsync(int id)
         {
-            return _transactions.FirstOrDefault(t => t.Id == id);
+            ApplicationDbContext context = new();
+            return await context.BudgetTransactions.FirstOrDefaultAsync(bt => bt.Id == id);
         }
 
-        public Transaction? Update(Transaction transaction)
+        public async Task<BudgetTransaction?> UpdateAsync(BudgetTransaction transaction)
         {
-            Transaction? existingTransaction = GetById(transaction.Id);
+            ApplicationDbContext context = new();
+            BudgetTransaction? existingTransaction = await GetByIdAsync(transaction.Id);
             if (existingTransaction == null)
                 return null;
 
@@ -44,6 +50,8 @@ namespace BudgetPlanner.Data.Repositories
             existingTransaction.Frequency = transaction.Frequency;
             existingTransaction.Category = transaction.Category;
             existingTransaction.Comment = transaction.Comment;
+            await context.SaveChangesAsync();
+
             return existingTransaction;
         }
     }

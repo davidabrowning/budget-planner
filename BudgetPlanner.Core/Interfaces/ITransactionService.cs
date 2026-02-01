@@ -4,10 +4,10 @@ namespace BudgetPlanner.Core.Interfaces
 {
     public interface ITransactionService
     {
-        IEnumerable<TransactionDto> GetAll();
-        TransactionDto? GetById(int id);
-        TransactionDto Add(TransactionDto dto);
-        TransactionDto? Update(TransactionDto dto);
-        bool Delete(TransactionDto dto);
+        Task<IEnumerable<TransactionDto>> GetAllAsync();
+        Task<TransactionDto?> GetByIdAsync(int id);
+        Task<TransactionDto> AddAsync(TransactionDto dto);
+        Task<TransactionDto?> UpdateAsync(TransactionDto dto);
+        Task<bool> DeleteAsync(TransactionDto dto);
     }
 }

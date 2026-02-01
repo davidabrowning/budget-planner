@@ -10,36 +10,36 @@ namespace BudgetPlanner.Tests.ServicesTests.Fake
 {
     public class FakeTransactionRepository : ITransactionRepository
     {
-        private List<Transaction> _transactions = new();
+        private List<BudgetTransaction> _transactions = new();
 
-        public Transaction Add(Transaction transaction)
+        public async Task<BudgetTransaction> AddAsync(BudgetTransaction transaction)
         {
             _transactions.Add(transaction);
             return transaction;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
-            Transaction? transaction = GetById(id);
+            BudgetTransaction? transaction = await GetByIdAsync(id);
             if (transaction == null)
                 return false;
             _transactions.Remove(transaction);
             return true;
         }
 
-        public IEnumerable<Transaction> GetAll()
+        public async Task<IEnumerable<BudgetTransaction>> GetAllAsync()
         {
             return _transactions.ToList();
         }
 
-        public Transaction? GetById(int id)
+        public async Task<BudgetTransaction?> GetByIdAsync(int id)
         {
             return _transactions.FirstOrDefault(t => t.Id == id);
         }
 
-        public Transaction? Update(Transaction transaction)
+        public async Task<BudgetTransaction?> UpdateAsync(BudgetTransaction transaction)
         {
-            Transaction? existingTransaction = GetById(transaction.Id);
+            BudgetTransaction? existingTransaction = await GetByIdAsync(transaction.Id);
             if (existingTransaction == null)
                 return null;
 

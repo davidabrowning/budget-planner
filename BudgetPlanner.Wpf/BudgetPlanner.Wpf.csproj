@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BudgetPlanner.Core\BudgetPlanner.Core.csproj" />
     <ProjectReference Include="..\BudgetPlanner.Data\BudgetPlanner.Data.csproj" />
     <ProjectReference Include="..\BudgetPlanner.Services\BudgetPlanner.Services.csproj" />

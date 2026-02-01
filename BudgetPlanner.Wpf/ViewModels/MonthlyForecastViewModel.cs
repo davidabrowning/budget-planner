@@ -34,9 +34,9 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             foreach (Month month in MonthLookup.All)
                 MonthlySummaryList.Add(new MonthlySummary { Month = month, Year = DateTime.Now.Year });
-            if (_transactionService.GetAll().Any())
+            if ((await _transactionService.GetAllAsync()).Any())
             {
-                foreach (TransactionDto transactionDto in _transactionService.GetAll())
+                foreach (TransactionDto transactionDto in await _transactionService.GetAllAsync())
                     AddTransaction(transactionDto);
                 return;
             }

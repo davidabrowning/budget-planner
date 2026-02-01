@@ -5,9 +5,9 @@ namespace BudgetPlanner.Services.Mappers
 {
     public static class TransactionMapper
     {
-        public static Transaction ToModel(TransactionDto dto)
+        public static BudgetTransaction ToModel(TransactionDto dto)
         {
-            Transaction model = new()
+            BudgetTransaction model = new()
             {
                 Id = dto.Id,
                 Amount = dto.Amount,
@@ -20,7 +20,7 @@ namespace BudgetPlanner.Services.Mappers
             return model;
         }
 
-        public static TransactionDto ToDto(Transaction model)
+        public static TransactionDto ToDto(BudgetTransaction model)
         {
             TransactionDto dto = new()
             {

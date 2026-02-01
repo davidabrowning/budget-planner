@@ -21,20 +21,11 @@ namespace BudgetPlanner.Wpf.ViewModels
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
             MonthlyForecastViewModel = new(_transactionService);
-            SeedInitialTransactions();
-        }
-
-        private void SeedInitialTransactions()
-        {
-            _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
-            _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
-            _transactionService.Add(new TransactionDto() { Amount = -1000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Jan groceries", Month = Month.Jan, Year = 2026 });
-            _transactionService.Add(new TransactionDto() { Amount = -2000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Feb groceries", Month = Month.Feb, Year = 2026 });
         }
 
         public void AddTransaction(TransactionDto transaction)
         {
-            _transactionService.Add(transaction);
+            _transactionService.AddAsync(transaction);
             TransactionsListViewModel.AddTransaction(transaction);
         }
 
@@ -48,7 +39,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            _transactionService.Update(TransactionsListViewModel.SelectedTransaction);
+            _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
             MonthlyForecastViewModel.RefreshTransactionList();
         }
 
@@ -56,7 +47,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if (TransactionsListViewModel.SelectedTransaction is null)
                 return;
-            _transactionService.Delete(TransactionsListViewModel.SelectedTransaction);
+            _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
             MonthlyForecastViewModel.RefreshTransactionList();
