@@ -11,6 +11,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public TransactionsListViewModel TransactionsListViewModel { get; }
         public AddTransactionViewModel AddTransactionViewModel { get; }
         public EditTransactionViewModel EditTransactionViewModel { get; }
+        public MonthlyForecastViewModel MonthlyForecastViewModel { get; }
         private readonly ITransactionService _transactionService;
 
         public MainViewModel(ITransactionService transactionService)
@@ -19,6 +20,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             TransactionsListViewModel = new(_transactionService);
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
+            MonthlyForecastViewModel = new(_transactionService);
             SeedInitialTransactions();
         }
 
@@ -26,12 +28,14 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
             _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
+            _transactionService.Add(new TransactionDto() { Amount = -1000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Jan groceries", Month = Month.Jan, Year = 2026 });
+            _transactionService.Add(new TransactionDto() { Amount = -2000, Category = Category.Food, Frequency = Frequency.OneTime, Comment = "Feb groceries", Month = Month.Feb, Year = 2026 });
         }
 
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
-            TransactionsListViewModel.Transactions.Add(transaction);
+            TransactionsListViewModel.AddTransaction(transaction);
         }
 
         public void SetSelectedTransaction(TransactionDto newSelectedTransaction)
@@ -45,6 +49,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
             _transactionService.Update(TransactionsListViewModel.SelectedTransaction);
+            MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public void DeleteSelectedTransaction()
@@ -54,17 +59,18 @@ namespace BudgetPlanner.Wpf.ViewModels
             _transactionService.Delete(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
+            MonthlyForecastViewModel.RefreshTransactionList();
+        }
+
+        public void RefreshTabData()
+        {
+            MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public async Task LoadAsync()
         {
-            if (_transactionService.GetAll().Any())
-            {
-                TransactionsListViewModel.Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
-                return;
-            }
-
-            // Otherwise, load transactions from database
+            await TransactionsListViewModel.LoadAsync();
+            await MonthlyForecastViewModel.LoadAsync();
         }
     }
 }
