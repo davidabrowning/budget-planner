@@ -63,6 +63,11 @@ namespace BudgetPlanner.Wpf.Views
             _viewModel.DeleteSelectedTransaction();
         }
 
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.RefreshTabData();
+        }
+
         private TransactionDto? GetClickedTransaction(object sender)
         {
             Button? button = sender as Button;

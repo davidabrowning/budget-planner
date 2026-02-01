@@ -41,7 +41,7 @@
                     </ListView>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TabControl x:Name="AddEditTransactionTabGroup">
+                    <TabControl x:Name="AddEditTransactionTabGroup" SelectionChanged="TabControl_SelectionChanged">
                         <TabItem x:Name="AddTab" Header="Add new">
                             <StackPanel DataContext="{Binding Path=AddTransactionViewModel}">
                                 <Label Content="Amount:" />
