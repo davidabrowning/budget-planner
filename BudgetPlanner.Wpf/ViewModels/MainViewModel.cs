@@ -19,6 +19,11 @@ namespace BudgetPlanner.Wpf.ViewModels
             TransactionsListViewModel = new(_transactionService);
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
+            SeedInitialTransactions();
+        }
+
+        private void SeedInitialTransactions()
+        {
             _transactionService.Add(new TransactionDto() { Amount = 30000, Category = Category.Salary, Frequency = Frequency.Monthly, Comment = "Monthly salary" });
             _transactionService.Add(new TransactionDto() { Amount = -5000, Category = Category.Housing, Frequency = Frequency.Monthly, Comment = "Monthly rent" });
         }

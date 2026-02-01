@@ -58,12 +58,6 @@ namespace BudgetPlanner.Wpf.Views
             AddEditTransactionTabGroup.SelectedItem = EditTab;
         }
 
-        private void UpdateTransactionButton_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.UpdateSelectedTransaction();
-            AddEditTransactionTabGroup.SelectedItem = AddTab;
-        }
-
         private void DeleteTransactionButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.DeleteSelectedTransaction();

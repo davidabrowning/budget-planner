@@ -109,11 +109,6 @@
                                 <TextBox x:Name="EditComment" 
                                         Text="{Binding Path=SelectedTransaction.Comment}" />
 
-                                <Button x:Name="UpdateTransactionButton"
-                                        Content="Update transaction"
-                                        Click="UpdateTransactionButton_Click"
-                                        Margin="5"/>
-
                                 <Button x:Name="DeleteTransactionButton"
                                         Content="Delete transaction"
                                         Click="DeleteTransactionButton_Click"
