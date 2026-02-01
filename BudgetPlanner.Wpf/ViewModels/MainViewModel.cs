@@ -11,6 +11,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public TransactionsListViewModel TransactionsListViewModel { get; }
         public AddTransactionViewModel AddTransactionViewModel { get; }
         public EditTransactionViewModel EditTransactionViewModel { get; }
+        public MonthlyForecastViewModel MonthlyForecastViewModel { get; }
         private readonly ITransactionService _transactionService;
 
         public MainViewModel(ITransactionService transactionService)
@@ -19,6 +20,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             TransactionsListViewModel = new(_transactionService);
             AddTransactionViewModel = new(_transactionService);
             EditTransactionViewModel = new(_transactionService);
+            MonthlyForecastViewModel = new(_transactionService);
             SeedInitialTransactions();
         }
 
@@ -61,6 +63,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public async Task LoadAsync()
         {
             await TransactionsListViewModel.LoadAsync();
+            await MonthlyForecastViewModel.LoadAsync();
         }
     }
 }

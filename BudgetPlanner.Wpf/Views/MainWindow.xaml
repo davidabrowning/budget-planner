@@ -122,6 +122,24 @@
                                         Margin="5"/>
                             </StackPanel>
                         </TabItem>
+                        <TabItem x:Name="MonthlyForecast" Header="Monthly Forecast">
+                            <StackPanel DataContext="{Binding Path=MonthlyForecastViewModel}">
+                                <ListView ItemsSource="{Binding Path=MonthlySummaryList}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Path=Year}" Margin="5" />
+                                                <TextBlock Text="{Binding Path=Month}" Margin="5" />
+                                                <TextBlock Text="{Binding Path=Incomes}" Margin="5" />
+                                                <TextBlock Text="{Binding Path=Expenses}" Margin="5" />
+                                                <TextBlock Text="=>" Margin="5" />
+                                                <TextBlock Text="{Binding Path=Net}" Margin="5" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </TabItem>
                     </TabControl>
                 </StackPanel>
             </Grid>
