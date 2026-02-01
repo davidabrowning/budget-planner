@@ -72,6 +72,7 @@ namespace BudgetPlanner.Wpf.Views
         private void DeleteTransactionButton_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.DeleteSelectedTransaction();
+            AddEditTransactionTabGroup.SelectedItem = AddTab;
         }
 
         private TransactionDto? GetClickedTransaction(object sender)
