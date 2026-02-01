@@ -33,7 +33,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public void AddTransaction(TransactionDto transaction)
         {
             _transactionService.Add(transaction);
-            TransactionsListViewModel.Transactions.Add(transaction);
+            TransactionsListViewModel.AddTransaction(transaction);
         }
 
         public void SetSelectedTransaction(TransactionDto newSelectedTransaction)

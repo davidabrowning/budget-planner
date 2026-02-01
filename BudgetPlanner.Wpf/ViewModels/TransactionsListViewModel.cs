@@ -1,4 +1,5 @@
 ﻿using BudgetPlanner.Core.Dtos;
+using BudgetPlanner.Core.Enums;
 using BudgetPlanner.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -53,11 +54,23 @@ namespace BudgetPlanner.Wpf.ViewModels
             if (_transactionService.GetAll().Any())
             {
                 foreach (TransactionDto transactionDto in _transactionService.GetAll())
-                    Transactions.Add(transactionDto);
+                    AddTransaction(transactionDto);
                 return;
             }
+        }
 
-            // Otherwise, load transactions from database
+        public void AddTransaction(TransactionDto transactionDto)
+        {
+            if (transactionDto.Frequency == Frequency.Monthly)
+            {
+                foreach (Month month in MonthLookup.All)
+                {
+                    transactionDto.Month = month;
+                    Transactions.Add(transactionDto);
+                }
+            }
+            else
+                Transactions.Add(transactionDto);
         }
     }
 }
