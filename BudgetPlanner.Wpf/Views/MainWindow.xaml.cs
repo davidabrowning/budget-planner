@@ -15,14 +15,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BudgetPlanner.Wpf
+namespace BudgetPlanner.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TransactionsViewModel _viewModel;
+        private MainViewModel _viewModel;
 
         public MainWindow()
         {
@@ -75,7 +75,8 @@ namespace BudgetPlanner.Wpf
             TransactionDto? transaction = button?.DataContext as TransactionDto;
             if (transaction == null)
                 return;
-            _viewModel.SelectedTransaction = transaction;
+            _viewModel.TransactionsListViewModel.SelectedTransaction = transaction;
+            _viewModel.EditTransactionViewModel.SelectedTransaction = transaction;
             AddEditTransactionTabGroup.SelectedItem = EditTab;
         }
 
