@@ -71,6 +71,22 @@
                             <Setter Property="Background" Value="{StaticResource AccentAction}" />
                             <Setter Property="Padding" Value="15" />
                             <Setter Property="Padding" Value="15" />
+                            <Setter Property="Margin" Value="15 15 15 0" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 15 15 0" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 0 15 0" />
+                        </Style.Setters>
+                    </Style>
+                    <Style TargetType="ListBox">
+                        <Style.Setters>
+                            <Setter Property="Margin" Value="15 0 15 0" />
                         </Style.Setters>
                     </Style>
                 </Grid.Resources>
@@ -110,8 +126,7 @@
 
                             <Button x:Name="AddTransactionButton"
                                         Content="Add transaction"
-                                        Click="AddTransactionButton_Click"
-                                        Margin="5"/>
+                                        Click="AddTransactionButton_Click"/>
                         </StackPanel>
                     </TabItem>
                     <TabItem x:Name="EditTab" Header="Edit">
@@ -151,13 +166,11 @@
 
                             <Button x:Name="SaveChangesTransactionButton"
                                         Content="Save changes"
-                                        Click="SaveChangesTransactionButton_Click"
-                                        Margin="5"/>
+                                        Click="SaveChangesTransactionButton_Click"/>
 
                             <Button x:Name="DeleteTransactionButton"
                                         Content="Delete transaction"
-                                        Click="DeleteTransactionButton_Click"
-                                        Margin="5"/>
+                                        Click="DeleteTransactionButton_Click"/>
                         </StackPanel>
                     </TabItem>
                     <TabItem x:Name="MonthlyForecast" Header="Forecast">
