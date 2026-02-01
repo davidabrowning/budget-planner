@@ -60,13 +60,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task LoadAsync()
         {
-            if (_transactionService.GetAll().Any())
-            {
-                TransactionsListViewModel.Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
-                return;
-            }
-
-            // Otherwise, load transactions from database
+            await TransactionsListViewModel.LoadAsync();
         }
     }
 }

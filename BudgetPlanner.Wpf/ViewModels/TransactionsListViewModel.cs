@@ -39,5 +39,16 @@ namespace BudgetPlanner.Wpf.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public async Task LoadAsync()
+        {
+            if (_transactionService.GetAll().Any())
+            {
+                Transactions = new ObservableCollection<TransactionDto>(_transactionService.GetAll());
+                return;
+            }
+
+            // Otherwise, load transactions from database
+        }
     }
 }
