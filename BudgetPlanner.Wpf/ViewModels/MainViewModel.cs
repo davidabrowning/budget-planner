@@ -58,6 +58,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             _transactionService.Delete(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
+            MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public async Task LoadAsync()

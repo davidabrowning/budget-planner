@@ -68,5 +68,11 @@ namespace BudgetPlanner.Wpf.ViewModels
             foreach (MonthlySummary relevantMonthlySummary in relevantMonthlySummaries)
                 relevantMonthlySummary.Transactions.Add(transactionDto);
         }
+
+        public async Task RefreshTransactionList()
+        {
+            MonthlySummaryList.Clear();
+            await LoadAsync();
+        }
     }
 }
