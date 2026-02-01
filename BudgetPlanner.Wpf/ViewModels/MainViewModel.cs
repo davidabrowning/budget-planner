@@ -35,27 +35,27 @@ namespace BudgetPlanner.Wpf.ViewModels
             EditTransactionViewModel.SelectedTransaction = newSelectedTransaction;
         }
 
-        public void UpdateSelectedTransaction()
+        public async void UpdateSelectedTransaction()
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
-            MonthlyForecastViewModel.RefreshTransactionList();
+            await _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
-        public void DeleteSelectedTransaction()
+        public async void DeleteSelectedTransaction()
         {
             if (TransactionsListViewModel.SelectedTransaction is null)
                 return;
-            _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
+            await _transactionService.DeleteAsync(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.Transactions.Remove(TransactionsListViewModel.SelectedTransaction);
             TransactionsListViewModel.SelectedTransaction = null;
-            MonthlyForecastViewModel.RefreshTransactionList();
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
-        public void RefreshTabData()
+        public async void RefreshTabData()
         {
-            MonthlyForecastViewModel.RefreshTransactionList();
+            await MonthlyForecastViewModel.RefreshTransactionList();
         }
 
         public async Task LoadAsync()

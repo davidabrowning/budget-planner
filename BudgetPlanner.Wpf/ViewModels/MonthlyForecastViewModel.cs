@@ -32,6 +32,7 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task LoadAsync()
         {
+            MonthlySummaryList.Clear();
             foreach (Month month in MonthLookup.All)
                 MonthlySummaryList.Add(new MonthlySummary { Month = month, Year = DateTime.Now.Year });
             if ((await _transactionService.GetAllAsync()).Any())
@@ -71,7 +72,6 @@ namespace BudgetPlanner.Wpf.ViewModels
 
         public async Task RefreshTransactionList()
         {
-            MonthlySummaryList.Clear();
             await LoadAsync();
         }
     }

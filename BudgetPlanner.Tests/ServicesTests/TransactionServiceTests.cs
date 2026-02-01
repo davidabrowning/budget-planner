@@ -22,7 +22,7 @@ namespace BudgetPlanner.Tests.ServicesTests
             TransactionDto transactionDto = new() { Amount = 42 };
 
             // Act
-            _transactionService.AddAsync(transactionDto);
+            await _transactionService.AddAsync(transactionDto);
 
             // Assert
             Assert.Contains(transactionDto, await _transactionService.GetAllAsync());
