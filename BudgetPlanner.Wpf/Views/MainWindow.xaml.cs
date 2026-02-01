@@ -113,14 +113,14 @@ namespace BudgetPlanner.Wpf.Views
 
         private TransactionDto? GetEditedTransaction()
         {
-            string amountString = EditAmount.Text;
-            string commentString = EditComment.Text;
-            Category category = (Category)EditCategory.SelectedItem;
-            Frequency frequency = (Frequency)EditFrequency.SelectedItem;
-            string yearString = EditYear.Text;
-            Month month = (Month)EditMonth.SelectedItem;
             try
             {
+                string amountString = EditAmount.Text;
+                string commentString = EditComment.Text;
+                Category category = (Category)EditCategory.SelectedItem;
+                Frequency frequency = (Frequency)EditFrequency.SelectedItem;
+                string yearString = EditYear.Text;
+                Month month = (Month)EditMonth.SelectedItem;
                 int amountInt = Convert.ToInt32(amountString);
                 int yearInt = Convert.ToInt32(yearString);
                 TransactionDto editedTransaction = new TransactionDto()
