@@ -1,9 +1,11 @@
 ﻿using BudgetPlanner.Core.Dtos;
 using BudgetPlanner.Core.Enums;
 using BudgetPlanner.Core.Interfaces;
+using BudgetPlanner.Data;
 using BudgetPlanner.Data.Repositories;
 using BudgetPlanner.Services;
 using BudgetPlanner.Wpf.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -28,7 +30,10 @@ namespace BudgetPlanner.Wpf.Views
         public MainWindow()
         {
             InitializeComponent();
-            TransactionRepository transactionRepository = new();
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BudgetPlanner;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            DbContextOptions<ApplicationDbContext> options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(connectionString).Options;
+            ApplicationDbContext dbContext = new ApplicationDbContext(options);
+            TransactionRepository transactionRepository = new(dbContext);
             TransactionService transactionService = new(transactionRepository);
             _viewModel = new(transactionService);
             DataContext = _viewModel;

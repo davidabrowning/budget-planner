@@ -7,6 +7,12 @@ namespace BudgetPlanner.Data.Repositories
     {
         private List<BudgetTransaction> _transactions = new();
         private static int nextId = 0;
+        private readonly ApplicationDbContext _dbContext;
+
+        public TransactionRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         public BudgetTransaction Add(BudgetTransaction transaction)
         {
