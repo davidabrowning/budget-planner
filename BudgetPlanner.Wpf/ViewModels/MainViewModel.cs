@@ -36,11 +36,13 @@ namespace BudgetPlanner.Wpf.ViewModels
             EditTransactionViewModel.SelectedTransaction = newSelectedTransaction;
         }
 
-        public async void UpdateSelectedTransaction()
+        public async void UpdateSelectedTransaction(TransactionDto editedTransaction)
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
                 return;
-            await _transactionService.UpdateAsync(TransactionsListViewModel.SelectedTransaction);
+            editedTransaction.Id = TransactionsListViewModel.SelectedTransaction.Id;
+            await _transactionService.UpdateAsync(editedTransaction);
+            await LoadAsync();
             await MonthlyForecastViewModel.RefreshTransactionList();
         }
 

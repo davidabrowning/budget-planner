@@ -85,16 +85,16 @@
                             <StackPanel DataContext="{Binding Path=EditTransactionViewModel}">
                                 <Label Content="Amount:"/>
                                 <TextBox x:Name="EditAmount" 
-                                        Text="{Binding Path=SelectedTransaction.Amount}" />
+                                        Text="{Binding Path=SelectedTransaction.Amount, Mode=OneWay}" />
 
                                 <Label Content="Year:"/>
                                 <TextBox x:Name="EditYear" 
-                                        Text="{Binding Path=SelectedTransaction.Year}" />
+                                        Text="{Binding Path=SelectedTransaction.Year, Mode=OneWay}" />
 
                                 <Label Content="Month:"/>
                                 <ListBox x:Name="EditMonth"
                                         ItemsSource="{Binding Path=AllMonths}" 
-                                        SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=TwoWay}">
+                                        SelectedItem="{Binding Path=SelectedTransaction.Month, Mode=OneWay}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal" />
@@ -105,16 +105,21 @@
                                 <Label Content="Category:"/>
                                 <ListBox x:Name="EditCategory" 
                                          ItemsSource="{Binding Path=AllCategories}" 
-                                         SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=TwoWay}" />
+                                         SelectedItem="{Binding Path=SelectedTransaction.Category, Mode=OneWay}" />
 
                                 <Label Content="Frequency:"/>
                                 <ListBox x:Name="EditFrequency" 
                                          ItemsSource="{Binding Path=AllFrequencies}" 
-                                         SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=TwoWay}" />
+                                         SelectedItem="{Binding Path=SelectedTransaction.Frequency, Mode=OneWay}" />
 
                                 <Label Content="Comment:"/>
                                 <TextBox x:Name="EditComment" 
-                                        Text="{Binding Path=SelectedTransaction.Comment}" />
+                                        Text="{Binding Path=SelectedTransaction.Comment, Mode=OneWay}" />
+
+                                <Button x:Name="SaveChangesTransactionButton"
+                                        Content="Save changes"
+                                        Click="SaveChangesTransactionButton_Click"
+                                        Margin="5"/>
 
                                 <Button x:Name="DeleteTransactionButton"
                                         Content="Delete transaction"

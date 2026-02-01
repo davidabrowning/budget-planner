@@ -53,6 +53,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         {
             if ((await _transactionService.GetAllAsync()).Any())
             {
+                Transactions.Clear();
                 foreach (TransactionDto transactionDto in await _transactionService.GetAllAsync())
                     AddTransaction(transactionDto);
                 return;

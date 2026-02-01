@@ -55,6 +55,7 @@ namespace BudgetPlanner.Data.Repositories
             existingTransaction.Frequency = transaction.Frequency;
             existingTransaction.Category = transaction.Category;
             existingTransaction.Comment = transaction.Comment;
+            context.Update(existingTransaction);
             await context.SaveChangesAsync();
 
             return existingTransaction;
