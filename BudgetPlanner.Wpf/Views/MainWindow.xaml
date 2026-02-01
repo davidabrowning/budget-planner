@@ -137,7 +137,6 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Path=Year}" Margin="5" />
                                             <TextBlock Text="{Binding Path=Month}" Margin="5" />
                                             <TextBlock Text="{Binding Path=Incomes}" Margin="5" />
                                             <TextBlock Text="{Binding Path=Expenses}" Margin="5" />
@@ -147,6 +146,13 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=CurrentYear}" Margin="5" />
+                                <TextBlock Text="{Binding Path=TotalIncomes}" Margin="5" />
+                                <TextBlock Text="{Binding Path=TotalExpenses}" Margin="5" />
+                                <TextBlock Text="=>" Margin="5" />
+                                <TextBlock Text="{Binding Path=TotalNet}" Margin="5" />
+                            </StackPanel>
                         </StackPanel>
                     </TabItem>
                 </TabControl>
