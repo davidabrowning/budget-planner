@@ -54,8 +54,7 @@ namespace BudgetPlanner.Wpf.Views
             TransactionDto? selectedTransaction = GetClickedTransaction(sender);
             if (selectedTransaction == null)
                 return;
-            _viewModel.TransactionsListViewModel.SelectedTransaction = selectedTransaction;
-            _viewModel.EditTransactionViewModel.SelectedTransaction = selectedTransaction;
+            _viewModel.SetSelectedTransaction(selectedTransaction);
             AddEditTransactionTabGroup.SelectedItem = EditTab;
         }
 

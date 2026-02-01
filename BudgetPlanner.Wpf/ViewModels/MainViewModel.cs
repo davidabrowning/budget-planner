@@ -29,6 +29,12 @@ namespace BudgetPlanner.Wpf.ViewModels
             TransactionsListViewModel.Transactions.Add(transaction);
         }
 
+        public void SetSelectedTransaction(TransactionDto newSelectedTransaction)
+        {
+            TransactionsListViewModel.SelectedTransaction = newSelectedTransaction;
+            EditTransactionViewModel.SelectedTransaction = newSelectedTransaction;
+        }
+
         public void UpdateSelectedTransaction()
         {
             if (TransactionsListViewModel.SelectedTransaction == null)
