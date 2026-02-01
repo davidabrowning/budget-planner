@@ -27,15 +27,15 @@
                         </ListView.GroupStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=Category}" Margin="5" />
-                                    <TextBlock Text="{Binding Path=Amount}" Margin="5" />
-                                    <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
-                                    <TextBlock Text="{Binding Path=Comment}" Margin="5" />
-                                    <Button x:Name="EditTransactionButton" 
-                                            Content="Edit" 
-                                            Click="EditTransactionButton_Click" />
-                                </StackPanel>
+                                <Button x:Name="EditTransactionButton" 
+                                            Click="EditTransactionButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Path=Category}" Margin="5" />
+                                        <TextBlock Text="{Binding Path=Amount}" Margin="5" />
+                                        <TextBlock Text="{Binding Path=Frequency}" Margin="5" />
+                                        <TextBlock Text="{Binding Path=Comment}" Margin="5" />
+                                    </StackPanel>
+                                </Button>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
