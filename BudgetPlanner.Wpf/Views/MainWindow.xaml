@@ -44,7 +44,7 @@
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Path=Name}" Padding="5" FontWeight="Bold"
+                                    <TextBlock Text="{Binding Path=Name}" FontSize="16" Padding="5" FontWeight="Bold"
                                                Foreground="{StaticResource AccentDarker}"
                                                Background="{StaticResource AccentMedium}" />
                                 </DataTemplate>
@@ -59,7 +59,7 @@
                                     HorizontalContentAlignment="Left"
                                     Background="{StaticResource AccentLightest}">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Path=Amount, StringFormat={}{0}:-}" Padding="5" Width="100" />
+                                    <TextBlock Text="{Binding Path=Amount, StringFormat={}{0}:-}" Padding="5" Width="100" TextAlignment="Right" />
                                     <TextBlock Text="{Binding Path=Category}" Padding="5" Width="150" />
                                     <TextBlock Text="{Binding Path=Frequency, StringFormat=({0})}" Padding="5" Width="100" />
                                     <TextBlock Text="{Binding Path=Comment, StringFormat=Comment: {0}}" Padding="5" />
@@ -203,19 +203,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Path=Month}" Margin="5" Width="100" />
-                                            <TextBlock Text="{Binding Path=Incomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
-                                            <TextBlock Text="{Binding Path=Expenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
-                                            <TextBlock Text="{Binding Path=Net, StringFormat={}{0}:- net}" Margin="5" />
+                                            <TextBlock Text="{Binding Path=Month}" Margin="5" Width="150" />
+                                            <TextBlock Text="{Binding Path=Incomes, StringFormat={}{0}:- in}" Margin="5" Width="100" TextAlignment="Right" />
+                                            <TextBlock Text="{Binding Path=Expenses, StringFormat={}{0}:- out}" Margin="5" Width="150" TextAlignment="Right" />
+                                            <TextBlock Text="{Binding Path=Net, StringFormat={}{0}:- net}" Margin="5" Width="150" TextAlignment="Right" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Path=CurrentYear, StringFormat={}{0} total}" Margin="5" Width="100" />
-                                <TextBlock Text="{Binding Path=TotalIncomes, StringFormat={}{0}:- in}" Margin="5" Width="100" />
-                                <TextBlock Text="{Binding Path=TotalExpenses, StringFormat={}{0}:- out}" Margin="5" Width="100" />
-                                <TextBlock Text="{Binding Path=TotalNet, StringFormat={}{0}:- net}" Margin="5" />
+                                <TextBlock Text="{Binding Path=TotalIncomes, StringFormat={}{0}:- in}" Margin="5" Width="150" TextAlignment="Right" />
+                                <TextBlock Text="{Binding Path=TotalExpenses, StringFormat={}{0}:- out}" Margin="5" Width="150" TextAlignment="Right" />
+                                <TextBlock Text="{Binding Path=TotalNet, StringFormat={}{0}:- net}" Margin="5" Width="150" TextAlignment="Right" />
                             </StackPanel>
                         </StackPanel>
                     </TabItem>
