@@ -27,16 +27,7 @@ namespace BudgetPlanner.Wpf.ViewModels
             TransactionsView.SortDescriptions.Add(new SortDescription(nameof(TransactionDto.Month), ListSortDirection.Ascending));
         }
 
-        private ObservableCollection<TransactionDto> transactions = new();
-        public ObservableCollection<TransactionDto> Transactions
-        {
-            get { return transactions; }
-            set
-            {
-                transactions = value;
-                RaisePropertyChanged();
-            }
-        }
+        public ObservableCollection<TransactionDto> Transactions { get; set; }
 
         private TransactionDto? selectedTransaction;
         public TransactionDto? SelectedTransaction
