@@ -26,7 +26,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public async void AddTransaction(TransactionDto transaction)
         {
             await _transactionService.AddAsync(transaction);
-            TransactionsListViewModel.AddTransaction(transaction);
+            TransactionsListViewModel.AddTransactionToCurrentYearList(transaction);
             await MonthlyForecastViewModel.RefreshTransactionList();
         }
 

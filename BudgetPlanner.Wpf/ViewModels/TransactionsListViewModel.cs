@@ -45,23 +45,46 @@ namespace BudgetPlanner.Wpf.ViewModels
             {
                 Transactions.Clear();
                 foreach (TransactionDto transactionDto in await _transactionService.GetAllAsync())
-                    AddTransaction(transactionDto);
+                    AddTransactionToCurrentYearList(transactionDto);
                 return;
             }
         }
 
-        public void AddTransaction(TransactionDto transactionDto)
+        public void AddTransactionToCurrentYearList(TransactionDto transactionDto)
         {
+            if (transactionDto.Frequency == Frequency.Yearly)
+            {
+                AddOneInstanceOfYearlyTransaction(transactionDto);
+            }
             if (transactionDto.Frequency == Frequency.Monthly)
             {
-                foreach (Month month in MonthLookup.All)
-                {
-                    transactionDto.Month = month;
-                    Transactions.Add(transactionDto);
-                }
+                AddTwelveInstancesOfMonthlyTransaction(transactionDto);
             }
-            else
+            if (transactionDto.Frequency == Frequency.OneTime && transactionDto.Year == DateTime.Now.Year)
+            {
+                AddOneInstanceOfThisYearsOneTimeTransaction(transactionDto);
+            }
+        }
+
+        private void AddOneInstanceOfYearlyTransaction(TransactionDto transactionDto)
+        {
+            transactionDto.Year = DateTime.Now.Year;
+            Transactions.Add(transactionDto);
+        }
+
+        private void AddTwelveInstancesOfMonthlyTransaction(TransactionDto transactionDto)
+        {
+            foreach (Month month in MonthLookup.All)
+            {
+                transactionDto.Year = DateTime.Now.Year;
+                transactionDto.Month = month;
                 Transactions.Add(transactionDto);
+            }
+        }
+
+        private void AddOneInstanceOfThisYearsOneTimeTransaction(TransactionDto transactionDto)
+        {
+            Transactions.Add(transactionDto);
         }
     }
 }
