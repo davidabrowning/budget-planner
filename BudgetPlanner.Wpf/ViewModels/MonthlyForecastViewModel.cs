@@ -16,7 +16,7 @@ namespace BudgetPlanner.Wpf.ViewModels
         public int CurrentYear { get; } = DateTime.Now.Year;
         public int TotalIncomes { get { return MonthlySummaryList.Where(ms => ms.Year == CurrentYear).Sum(ms => ms.Incomes); } }
         public int TotalExpenses { get { return MonthlySummaryList.Where(ms => ms.Year == CurrentYear).Sum(ms => ms.Expenses); } }
-        public int TotalNet { get { return TotalIncomes - TotalExpenses; } }
+        public int TotalNet { get { return TotalIncomes + TotalExpenses; } }
         private readonly ITransactionService _transactionService;
         public MonthlyForecastViewModel(ITransactionService transactionService)
         {
