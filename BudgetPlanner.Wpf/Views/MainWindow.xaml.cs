@@ -3,7 +3,7 @@ using BudgetPlanner.Core.Enums;
 using BudgetPlanner.Core.Interfaces;
 using BudgetPlanner.Data;
 using BudgetPlanner.Data.Repositories;
-using BudgetPlanner.Services;
+using BudgetPlanner.Services.Services;
 using BudgetPlanner.Wpf.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;

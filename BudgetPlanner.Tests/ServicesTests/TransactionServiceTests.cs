@@ -1,6 +1,6 @@
 ﻿using BudgetPlanner.Core.Dtos;
 using BudgetPlanner.Core.Enums;
-using BudgetPlanner.Services;
+using BudgetPlanner.Services.Services;
 using BudgetPlanner.Tests.ServicesTests.Fake;
 
 namespace BudgetPlanner.Tests.ServicesTests

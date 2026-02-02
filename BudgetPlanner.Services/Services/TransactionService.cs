@@ -3,7 +3,7 @@ using BudgetPlanner.Core.Interfaces;
 using BudgetPlanner.Core.Models;
 using BudgetPlanner.Services.Mappers;
 
-namespace BudgetPlanner.Services
+namespace BudgetPlanner.Services.Services
 {
     public class TransactionService : ITransactionService
     {
